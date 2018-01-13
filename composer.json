@@ -1,6 +1,6 @@
 {
-    "name": "dynamic/dynamic-elements-blog",
-    "description": "A blog element that works with the SilverStripe Elemental module",
+    "name": "dynamic/silverstripe-elemental-blog",
+    "description": "A blog element for the SilverStripe Elemental module",
     "authors": [
         {
             "name": "Dynamic",
