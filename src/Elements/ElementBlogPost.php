@@ -5,8 +5,10 @@ namespace Dynamic\Elements\Elements;
 use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\RequiredFields;
 use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\ORM\FieldType\DBHTMLText;
+use SilverStripe\ORM\ValidationResult;
 
 /**
  * Class ElementBlogPosts
@@ -97,10 +99,25 @@ class ElementBlogPosts extends BaseElement
     }
 
     /**
+     * @return ValidationResult
+     */
+    public function validate()
+    {
+        $result = parent::validate();
+        if (!$this->BlogID) {
+            $result->addError('Featured Blog is required before you can save');
+        }
+        return $result;
+    }
+
+    /**
      * @return mixed
      */
     public function getPostsList()
     {
-        return Blog::get()->byID($this->BlogID)->getBlogPosts()->Limit($this->Limit);
+        if ($this->BlogID) {
+            return Blog::get()->byID($this->BlogID)->getBlogPosts()->Limit($this->Limit);
+        }
+        return null;
     }
 }
