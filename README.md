@@ -5,7 +5,7 @@ Additional blog element for the SilverStripe Elemental module
 [![Build Status](https://travis-ci.org/dynamic/silverstripe-elemental-blog.svg?branch=master)](https://travis-ci.org/dynamic/silverstripe-elemental-blog)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/dynamic/dynamic-elements-blog/badges/build.png?b=master)](https://scrutinizer-ci.com/g/dynamic/dynamic-elements-blog/build-status/master)
+[![Build Status](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/badges/build.png?b=master)](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/build-status/master)
 [![codecov](https://codecov.io/gh/dynamic/silverstripe-elemental-blog/branch/master/graph/badge.svg)](https://codecov.io/gh/dynamic/silverstripe-elemental-blog)
 
 ## Requirements
