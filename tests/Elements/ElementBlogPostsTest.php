@@ -53,10 +53,10 @@ class ElementBlogPostsTest extends SapphireTest
         $blog = $this->objFromFixture(Blog::class, 'default');
 
         $valid = $object->validate()->isValid();
-        $this->assertFalse($valid);
-        $object->BlogID = $blog->ID;
-        $valid = $object->validate()->isValid();
         $this->assertTrue($valid);
+        $object->BlogID = 0;
+        $valid = $object->validate()->isValid();
+        $this->assertFalse($valid);
     }
 
     /**
