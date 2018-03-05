@@ -16,7 +16,7 @@ Additional blog element for the SilverStripe Elemental module
 
 ## Installation
 
-`composer require dynamic/dynamic-elements-blog`
+`composer require dynamic/silverstripe-elemental-blog`
 
 ## Usage
 
