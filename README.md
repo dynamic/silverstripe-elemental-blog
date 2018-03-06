@@ -1,12 +1,17 @@
-# dynamic-elements-blog
+# SilverStripe Elemental Blog
 
-Additional blog element for the SilverStripe Elemental module
+Recent Blog Posts Element for the SilverStripe Elemental module.
 
-[![Build Status](https://travis-ci.org/dynamic/dynamic-elements-blog.svg?branch=master)](https://travis-ci.org/dynamic/dynamic-elements-blog)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dynamic/dynamic-elements-blog/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dynamic/dynamic-elements-blog/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/dynamic/dynamic-elements-blog/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/dynamic/dynamic-elements-blog/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/dynamic/dynamic-elements-blog/badges/build.png?b=master)](https://scrutinizer-ci.com/g/dynamic/dynamic-elements-blog/build-status/master)
-[![codecov](https://codecov.io/gh/dynamic/dynamic-elements-blog/branch/master/graph/badge.svg)](https://codecov.io/gh/dynamic/dynamic-elements-blog)
+[![Build Status](https://travis-ci.org/dynamic/silverstripe-elemental-blog.svg?branch=master)](https://travis-ci.org/dynamic/silverstripe-elemental-blog)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/badges/build.png?b=master)](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/build-status/master)
+[![codecov](https://codecov.io/gh/dynamic/silverstripe-elemental-blog/branch/master/graph/badge.svg)](https://codecov.io/gh/dynamic/silverstripe-elemental-blog)
+
+[![Latest Stable Version](https://poser.pugx.org/dynamic/silverstripe-elemental-blog/v/stable)](https://packagist.org/packages/dynamic/silverstripe-elemental-blog)
+[![Total Downloads](https://poser.pugx.org/dynamic/silverstripe-elemental-blog/downloads)](https://packagist.org/packages/dynamic/silverstripe-elemental-blog)
+[![Latest Unstable Version](https://poser.pugx.org/dynamic/silverstripe-elemental-blog/v/unstable)](https://packagist.org/packages/dynamic/silverstripe-elemental-blog)
+[![License](https://poser.pugx.org/dynamic/silverstripe-elemental-blog/license)](https://packagist.org/packages/dynamic/silverstripe-elemental-blog)
 
 ## Requirements
 
@@ -16,13 +21,11 @@ Additional blog element for the SilverStripe Elemental module
 
 ## Installation
 
-`composer require dynamic/dynamic-elements-blog`
+`composer require dynamic/silverstripe-elemental-blog`
 
 ## Usage
 
-dynamic-elements-blog will add the following Element to your site:
-
-* Recent Blog Posts
+A new element Recent Blog Posts will be available as an option in the CMS. This element will show a list of recent posts by a featured blog. Ideal for home pages or dashboards.
 
 ## Documentation
 
