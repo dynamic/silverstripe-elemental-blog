@@ -13,6 +13,12 @@ use SilverStripe\ORM\ValidationResult;
 /**
  * Class ElementBlogPosts
  * @package Dynamic\Elements\Elements
+ *
+ * @property int $Limit
+ * @property string $Content
+ *
+ * @property int $BlogID
+ * @property Blog Blog()
  */
 class ElementBlogPosts extends BaseElement
 {

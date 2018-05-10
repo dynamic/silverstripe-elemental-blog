@@ -2,7 +2,7 @@
 
 namespace Dynamic\Elements\Blog\Elements\Tests;
 
-use Dynamic\Elements\Elements\ElementBlogPosts;
+use Dynamic\Elements\Blog\Elements\ElementBlogPosts;
 use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\Dev\SapphireTest;
