@@ -1,6 +1,6 @@
 <?php
 
-namespace Dynamic\Elements\Elements\Tests;
+namespace Dynamic\Elements\Blog\Elements\Tests;
 
 use Dynamic\Elements\Elements\ElementBlogPosts;
 use SilverStripe\Blog\Model\Blog;

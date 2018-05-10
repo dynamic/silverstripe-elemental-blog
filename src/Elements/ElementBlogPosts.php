@@ -1,6 +1,6 @@
 <?php
 
-namespace Dynamic\Elements\Elements;
+namespace Dynamic\Elements\Blog\Elements;
 
 use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Blog\Model\Blog;
