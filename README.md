@@ -25,8 +25,21 @@ Recent Blog Posts Element for the SilverStripe Elemental module.
 
 ## Usage
 
-A new element Recent Blog Posts will be available as an option in the CMS. This element will show a list of recent posts by a featured blog. Ideal for home pages or dashboards.
+A block to show a list of recent posts by a featured blog. Ideal for home pages or dashboards.
 
-## Documentation
+## Screen Shots
 
-See the [docs/en](docs/en/index.md) folder.
+#### Front End sample of a Blog Element
+![Front End sample of a Blog Element](./readme-images/blog-block-sample.jpg)
+
+#### CMS - Blog Element Main Tab
+![CMS - Blog Element Main Tab](./readme-images/blog-block-cms.jpg)
+
+
+## Getting more elements
+
+See [Elemental modules by Dynamic](https://github.com/dynamic/silverstripe-elemental-blocks#getting-more-elements)
+
+## Configuration
+
+See [SilverStripe Elemental Configuration](https://github.com/dnadesign/silverstripe-elemental#configuration)
