@@ -1,6 +1,6 @@
 <?php
 
-namespace Dynamic\Elements\Elements;
+namespace Dynamic\Elements\Blog\Elements;
 
 use DNADesign\Elemental\Models\BaseElement;
 use SilverStripe\Blog\Model\Blog;
@@ -13,6 +13,12 @@ use SilverStripe\ORM\ValidationResult;
 /**
  * Class ElementBlogPosts
  * @package Dynamic\Elements\Elements
+ *
+ * @property int $Limit
+ * @property string $Content
+ *
+ * @property int $BlogID
+ * @property Blog Blog()
  */
 class ElementBlogPosts extends BaseElement
 {

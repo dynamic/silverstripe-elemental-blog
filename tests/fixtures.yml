@@ -2,7 +2,7 @@ SilverStripe\Blog\Model\Blog:
   default:
     Title: "Blog"
 
-Dynamic\Elements\Elements\ElementBlogPosts:
+Dynamic\Elements\Blog\Elements\ElementBlogPosts:
   one:
     Title: "Blog Posts"
     Limit: 3
