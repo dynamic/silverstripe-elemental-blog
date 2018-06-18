@@ -112,7 +112,8 @@ class ElementBlogPosts extends BaseElement
                     return [];
                 };
 
-                $fields->insertAfter('BlogID',
+                $fields->insertAfter(
+                    'BlogID',
                     DependentDropdownField::create('CategoryID', 'Category', $dataSource)
                     ->setDepends($fields->dataFieldByName('BlogID'))
                     ->setHasEmptyDefault(true)
