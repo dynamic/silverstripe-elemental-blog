@@ -3,7 +3,10 @@
 namespace Dynamic\Elements\Blog\Elements;
 
 use DNADesign\Elemental\Models\BaseElement;
+use Sheadawson\DependentDropdown\Forms\DependentDropdownField;
 use SilverStripe\Blog\Model\Blog;
+use SilverStripe\Blog\Model\BlogCategory;
+use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\RequiredFields;
 use SilverStripe\ORM\FieldType\DBField;
@@ -18,7 +21,9 @@ use SilverStripe\ORM\ValidationResult;
  * @property string $Content
  *
  * @property int $BlogID
- * @property Blog Blog()
+ * @property int $CategoryID
+ * @method Blog Blog()
+ * @method BlogCategory Category()
  */
 class ElementBlogPosts extends BaseElement
 {
@@ -55,6 +60,7 @@ class ElementBlogPosts extends BaseElement
      */
     private static $has_one = array(
         'Blog' => Blog::class,
+        'Category' => BlogCategory::class,
     );
 
     /**
@@ -98,6 +104,20 @@ class ElementBlogPosts extends BaseElement
                         ->setTitle('Featured Blog'),
                     'Limit'
                 );
+
+                $dataSource = function ($val) {
+                    if ($val) {
+                        return Blog::get()->byID($val)->Categories()->map('ID', 'Title');
+                    }
+                    return [];
+                };
+
+                $fields->insertAfter('BlogID',
+                    DependentDropdownField::create('CategoryID', 'Category', $dataSource)
+                    ->setDepends($fields->dataFieldByName('BlogID'))
+                    ->setHasEmptyDefault(true)
+                    ->setEmptyString(' -- Category --')
+                );
             }
         });
 
@@ -122,6 +142,9 @@ class ElementBlogPosts extends BaseElement
     public function getPostsList()
     {
         if ($this->BlogID) {
+            if ($this->CategoryID) {
+                return BlogCategory::get()->byID($this->CategoryID)->BlogPosts()->Limit($this->Limit);
+            }
             return Blog::get()->byID($this->BlogID)->getBlogPosts()->Limit($this->Limit);
         }
         return null;
