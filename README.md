@@ -15,9 +15,9 @@ Recent Blog Posts Element for the SilverStripe Elemental module.
 
 ## Requirements
 
-- SilverStripe 4
-- silverstripe/blog
-- dnadesign/silverstripe-elemental
+- silverstripe/recipe-cms: ^4@dev
+- silverstripe/blog: ^3.0@dev
+- dnadesign/silverstripe-elemental: ^4@dev
 
 ## Installation
 
