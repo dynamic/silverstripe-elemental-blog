@@ -31,7 +31,7 @@ class ElementBlogPosts extends BaseElement
     /**
      * @var string
      */
-    private static $icon = 'vendor/dnadesign/silverstripe-elemental/images/base.svg';
+    private static $icon = 'font-icon-block-content';
 
     /**
      * @var string
@@ -117,7 +117,8 @@ class ElementBlogPosts extends BaseElement
             if (class_exists(Blog::class)) {
                 $fields->insertBefore(
                     $fields->dataFieldByName('BlogID')
-                        ->setTitle('Featured Blog'),
+                        ->setTitle('Featured Blog')
+                        ->setEmptyString('-- select --'),
                     'Limit'
                 );
 
@@ -133,7 +134,7 @@ class ElementBlogPosts extends BaseElement
                     DependentDropdownField::create('CategoryID', 'Category', $dataSource)
                         ->setDepends($fields->dataFieldByName('BlogID'))
                         ->setHasEmptyDefault(true)
-                        ->setEmptyString(' -- Category --')
+                        ->setEmptyString('-- select --')
                 );
             }
         });
