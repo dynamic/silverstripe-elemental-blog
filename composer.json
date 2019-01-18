@@ -1,6 +1,6 @@
 {
     "name": "dynamic/silverstripe-elemental-blog",
-    "description": "A blog element for the SilverStripe Elemental module",
+    "description": "Show recent blog posts from a featured blog.",
     "authors": [
         {
             "name": "Dynamic",
