@@ -18,10 +18,10 @@ class ElementBlogPostsTest extends SapphireTest
     /**
      *
      */
-    public function testGetElementSummary()
+    public function testGetSummary()
     {
         $object = $this->objFromFixture(ElementBlogPosts::class, 'one');
-        $this->assertEquals($object->ElementSummary(), $object->dbObject("Content")->Summary(20));
+        $this->assertEquals($object->getSummary(), $object->dbObject("Content")->Summary(20));
     }
 
     /**
@@ -42,21 +42,6 @@ class ElementBlogPostsTest extends SapphireTest
         $fields = $object->getCMSFields();
         $this->assertInstanceOf(FieldList::class, $fields);
         $this->assertNotNull($fields->dataFieldByName('BlogID'));
-    }
-
-    /**
-     *
-     */
-    public function testValidateBlog()
-    {
-        $object = $this->objFromFixture(ElementBlogPosts::class, 'one');
-        $blog = $this->objFromFixture(Blog::class, 'default');
-
-        $valid = $object->validate()->isValid();
-        $this->assertTrue($valid);
-        $object->BlogID = 0;
-        $valid = $object->validate()->isValid();
-        $this->assertFalse($valid);
     }
 
     /**

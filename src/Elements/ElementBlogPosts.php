@@ -6,6 +6,7 @@ use DNADesign\Elemental\Models\BaseElement;
 use Sheadawson\DependentDropdown\Forms\DependentDropdownField;
 use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Blog\Model\BlogCategory;
+use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\RequiredFields;
@@ -30,7 +31,7 @@ class ElementBlogPosts extends BaseElement
     /**
      * @var string
      */
-    private static $icon = 'vendor/dnadesign/silverstripe-elemental/images/base.svg';
+    private static $icon = 'font-icon-block-content';
 
     /**
      * @var string
@@ -41,6 +42,11 @@ class ElementBlogPosts extends BaseElement
      * @var string
      */
     private static $plural_name = 'Blog Posts Elements';
+
+    /**
+     * @var string
+     */
+    private static $description = 'Show recent blog posts from a featured blog.';
 
     /**
      * @var string
@@ -73,9 +79,19 @@ class ElementBlogPosts extends BaseElement
     /**
      * @return DBHTMLText
      */
-    public function ElementSummary()
+    public function getSummary()
     {
         return DBField::create_field('HTMLText', $this->Content)->Summary(20);
+    }
+
+    /**
+     * @return array
+     */
+    protected function provideBlockSchema()
+    {
+        $blockSchema = parent::provideBlockSchema();
+        $blockSchema['content'] = $this->getSummary();
+        return $blockSchema;
     }
 
     /**
@@ -101,7 +117,8 @@ class ElementBlogPosts extends BaseElement
             if (class_exists(Blog::class)) {
                 $fields->insertBefore(
                     $fields->dataFieldByName('BlogID')
-                        ->setTitle('Featured Blog'),
+                        ->setTitle('Featured Blog')
+                        ->setEmptyString('-- select --'),
                     'Limit'
                 );
 
@@ -115,26 +132,14 @@ class ElementBlogPosts extends BaseElement
                 $fields->insertAfter(
                     'BlogID',
                     DependentDropdownField::create('CategoryID', 'Category', $dataSource)
-                    ->setDepends($fields->dataFieldByName('BlogID'))
-                    ->setHasEmptyDefault(true)
-                    ->setEmptyString(' -- Category --')
+                        ->setDepends($fields->dataFieldByName('BlogID'))
+                        ->setHasEmptyDefault(true)
+                        ->setEmptyString('-- select --')
                 );
             }
         });
 
         return parent::getCMSFields();
-    }
-
-    /**
-     * @return ValidationResult
-     */
-    public function validate()
-    {
-        $result = parent::validate();
-        if (!$this->BlogID) {
-            $result->addError('Featured Blog is required before you can save');
-        }
-        return $result;
     }
 
     /**
@@ -147,7 +152,8 @@ class ElementBlogPosts extends BaseElement
                 return BlogCategory::get()->byID($this->CategoryID)->BlogPosts()->Limit($this->Limit);
             }
             return Blog::get()->byID($this->BlogID)->getBlogPosts()->Limit($this->Limit);
+        } else {
+            return BlogPost::get()->sort('PublishDate DESC')->limit($this->Limit);
         }
-        return null;
     }
 }
