@@ -17,8 +17,6 @@
     "type": "silverstripe-vendormodule",
     "license": "BSD-3-Clause",
     "require": {
-        "silverstripe/recipe-cms": "^4@dev",
-        "silverstripe/vendor-plugin": "^1@dev",
         "silverstripe/blog": "^3@dev",
         "dnadesign/silverstripe-elemental": "^4@dev",
         "sheadawson/silverstripe-dependentdropdownfield": "^2@dev"
