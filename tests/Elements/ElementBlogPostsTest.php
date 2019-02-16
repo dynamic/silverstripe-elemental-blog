@@ -21,7 +21,15 @@ class ElementBlogPostsTest extends SapphireTest
     public function testGetSummary()
     {
         $object = $this->objFromFixture(ElementBlogPosts::class, 'one');
-        $this->assertEquals($object->getSummary(), $object->dbObject("Content")->Summary(20));
+        $count = $object->getPostsList()->count();
+        $this->assertEquals(
+            $object->getSummary(),
+            _t(
+                BlogPost::class . 'PLURALS',
+                'A Blog Post|{count} Blog Posts',
+                [ 'count' => $count ]
+            )
+        );
     }
 
     /**

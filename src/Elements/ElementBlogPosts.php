@@ -36,21 +36,6 @@ class ElementBlogPosts extends BaseElement
     /**
      * @var string
      */
-    private static $singular_name = 'Blog Posts Element';
-
-    /**
-     * @var string
-     */
-    private static $plural_name = 'Blog Posts Elements';
-
-    /**
-     * @var string
-     */
-    private static $description = 'Show recent blog posts from a featured blog.';
-
-    /**
-     * @var string
-     */
     private static $table_name = 'ElementBlogPosts';
 
     /**
@@ -77,32 +62,6 @@ class ElementBlogPosts extends BaseElement
     );
 
     /**
-     * @return DBHTMLText
-     */
-    public function getSummary()
-    {
-        return DBField::create_field('HTMLText', $this->Content)->Summary(20);
-    }
-
-    /**
-     * @return array
-     */
-    protected function provideBlockSchema()
-    {
-        $blockSchema = parent::provideBlockSchema();
-        $blockSchema['content'] = $this->getSummary();
-        return $blockSchema;
-    }
-
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return _t(__CLASS__ . '.BlockType', 'Blog Posts');
-    }
-
-    /**
      * @return FieldList
      */
     public function getCMSFields()
@@ -112,13 +71,13 @@ class ElementBlogPosts extends BaseElement
                 ->setRows(8);
 
             $fields->dataFieldByName('Limit')
-                ->setTitle('Articles to show');
+                ->setTitle(_t(__CLASS__ . 'LimitLabel', 'Posts to show'));
 
             if (class_exists(Blog::class)) {
                 $fields->insertBefore(
                     $fields->dataFieldByName('BlogID')
-                        ->setTitle('Featured Blog')
-                        ->setEmptyString('-- select --'),
+                        ->setTitle(_t(__CLASS__ . 'BlogLabel', 'Featured Blog'))
+                        ->setEmptyString(''),
                     'Limit'
                 );
 
@@ -131,10 +90,13 @@ class ElementBlogPosts extends BaseElement
 
                 $fields->insertAfter(
                     'BlogID',
-                    DependentDropdownField::create('CategoryID', 'Category', $dataSource)
+                    DependentDropdownField::create('CategoryID', _t(
+                        __CLASS__ . 'CategoryLabel',
+                        'Category'
+                    ), $dataSource)
                         ->setDepends($fields->dataFieldByName('BlogID'))
                         ->setHasEmptyDefault(true)
-                        ->setEmptyString('-- select --')
+                        ->setEmptyString('')
                 );
             }
         });
@@ -155,5 +117,37 @@ class ElementBlogPosts extends BaseElement
         } else {
             return BlogPost::get()->sort('PublishDate DESC')->limit($this->Limit);
         }
+    }
+
+    /**
+     * @return DBHTMLText
+     */
+    public function getSummary()
+    {
+        $count = $this->getPostsList()->count();
+        $label = _t(
+            BlogPost::class . '.PLURALS',
+            'A Blog Post|{count} Blog Posts',
+            [ 'count' => $count ]
+        );
+        return DBField::create_field('HTMLText', $label)->Summary(20);
+    }
+
+    /**
+     * @return array
+     */
+    protected function provideBlockSchema()
+    {
+        $blockSchema = parent::provideBlockSchema();
+        $blockSchema['content'] = $this->getSummary();
+        return $blockSchema;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return _t(__CLASS__ . '.BlockType', 'Blog Posts');
     }
 }

@@ -1,6 +1,6 @@
 {
     "name": "dynamic/silverstripe-elemental-blog",
-    "description": "Show recent blog posts from a featured blog.",
+    "description": "Show recent posts from a featured blog.",
     "authors": [
         {
             "name": "Dynamic",
@@ -22,7 +22,7 @@
         "sheadawson/silverstripe-dependentdropdownfield": "^2@dev"
     },
     "require-dev": {
-        "phpunit/PHPUnit": "^5.7",
+        "phpunit/phpunit": "^5.7",
         "squizlabs/php_codesniffer": "*"
     },
     "autoload": {
