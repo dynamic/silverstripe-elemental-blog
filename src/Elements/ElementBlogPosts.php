@@ -127,7 +127,7 @@ class ElementBlogPosts extends BaseElement
         $count = $this->getPostsList()->count();
         $label = _t(
             BlogPost::class . '.PLURALS',
-            '{count} post|{count} posts',
+            'A Blog Post|{count} Blog Posts',
             [ 'count' => $count ]
         );
         return DBField::create_field('HTMLText', $label)->Summary(20);

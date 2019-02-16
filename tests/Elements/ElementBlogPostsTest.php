@@ -22,11 +22,14 @@ class ElementBlogPostsTest extends SapphireTest
     {
         $object = $this->objFromFixture(ElementBlogPosts::class, 'one');
         $count = $object->getPostsList()->count();
-        $this->assertEquals($object->getSummary(), _t(
-            BlogPost::class . 'PLURALS',
-            '{count} post|{count} posts',
-            [ 'count' => $count ]
-        ));
+        $this->assertEquals(
+            $object->getSummary(),
+            _t(
+                BlogPost::class . 'PLURALS',
+                'A Blog Post|{count} Blog Posts',
+                [ 'count' => $count ]
+            )
+        );
     }
 
     /**
