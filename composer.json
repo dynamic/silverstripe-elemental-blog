@@ -1,6 +1,6 @@
 {
     "name": "dynamic/silverstripe-elemental-blog",
-    "description": "Show recent blog posts from a featured blog.",
+    "description": "Show recent posts from a featured blog.",
     "authors": [
         {
             "name": "Dynamic",

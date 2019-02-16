@@ -1,0 +1,12 @@
+en:
+  Dynamic\Elements\Blog\Elements\ElementBlogPosts:
+    BlockType: Blog Posts
+    BlogLabel: 'Featured Blog'
+    CategoryLabel: 'Category'
+    DESCRIPTION: 'Show recent posts from a featured blog.'
+    LimitLabel: 'Posts to show'
+    PLURALNAME: Blog Post Elements
+    PLURALS:
+      one: 'A Blog Post Element'
+      other: '{count} Blog Post Elements'
+    SINGULARNAME: Blog Post Element
