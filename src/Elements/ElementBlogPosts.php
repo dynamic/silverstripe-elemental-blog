@@ -31,7 +31,7 @@ class ElementBlogPosts extends BaseElement
     /**
      * @var string
      */
-    private static $icon = 'font-icon-block-content';
+    private static $icon = 'font-icon-menu-campaigns';
 
     /**
      * @var string
