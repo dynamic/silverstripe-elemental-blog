@@ -50,25 +50,25 @@ class ElementBlogPosts extends BaseElement
     /**
      * @var array
      */
-    private static $db = array(
+    private static $db = [
         'Limit' => 'Int',
         'Content' => 'HTMLText',
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $has_one = array(
+    private static $has_one = [
         'Blog' => Blog::class,
         'Category' => BlogCategory::class,
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $defaults = array(
+    private static $defaults = [
         'Limit' => 3,
-    );
+    ];
 
     /**
      * @return DBHTMLText
@@ -107,17 +107,20 @@ class ElementBlogPosts extends BaseElement
 
                 $dataSource = function ($val) {
                     if ($val) {
-                        return Blog::get()->byID($val)->Categories()->map('ID', 'Title');
+                        if ($blog = Blog::get()->byID($val)) {
+                            return $blog->Categories()->map('ID', 'Title');
+                        }
                     }
+
                     return [];
                 };
 
                 $fields->insertAfter(
                     'BlogID',
                     DependentDropdownField::create('CategoryID', 'Category', $dataSource)
-                    ->setDepends($fields->dataFieldByName('BlogID'))
-                    ->setHasEmptyDefault(true)
-                    ->setEmptyString(' -- Category --')
+                        ->setDepends($fields->dataFieldByName('BlogID'))
+                        ->setHasEmptyDefault(true)
+                        ->setEmptyString(' -- Category --')
                 );
             }
         });
@@ -134,6 +137,7 @@ class ElementBlogPosts extends BaseElement
         if (!$this->BlogID) {
             $result->addError('Featured Blog is required before you can save');
         }
+
         return $result;
     }
 
@@ -146,8 +150,11 @@ class ElementBlogPosts extends BaseElement
             if ($this->CategoryID) {
                 return BlogCategory::get()->byID($this->CategoryID)->BlogPosts()->Limit($this->Limit);
             }
-            return Blog::get()->byID($this->BlogID)->getBlogPosts()->Limit($this->Limit);
+            if ($blog = Blog::get()->byID($this->BlogID)) {
+                return $blog->getBlogPosts()->Limit($this->Limit);
+            }
         }
+
         return null;
     }
 }
