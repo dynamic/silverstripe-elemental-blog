@@ -30,7 +30,7 @@ class ElementBlogPostsTest extends SapphireTest
             _t(
                 BlogPost::class . 'PLURALS',
                 'A Blog Post|{count} Blog Posts',
-                [ 'count' => $count ]
+                ['count' => $count]
             )
         );
     }
@@ -96,7 +96,7 @@ class ElementBlogPostsTest extends SapphireTest
      * @param DataList $actual
      * @param string $message
      */
-    private function compareList(DataList $expected, DataList $actual, $message='')
+    private function compareList(DataList $expected, DataList $actual, $message = '')
     {
         $expectedArray = $expected->map('ID', 'ClassName')->toArray();
         $actualArray = $expected->map('ID', 'ClassName')->toArray();
