@@ -10,6 +10,7 @@ use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\RequiredFields;
+use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\ORM\FieldType\DBHTMLText;
 use SilverStripe\ORM\ValidationResult;
@@ -109,15 +110,20 @@ class ElementBlogPosts extends BaseElement
      */
     public function getPostsList()
     {
-        if ($this->BlogID) {
-            if ($this->CategoryID) {
-                return BlogCategory::get()->byID($this->CategoryID)->BlogPosts()->Limit($this->Limit);
-            }
-            return Blog::get()->byID($this->BlogID)->getBlogPosts()->Limit($this->Limit);
+        /** @var DataList $posts */
+        $posts = null;
+
+        if ($this->BlogID && $this->CategoryID && $category = BlogCategory::get()->byID($this->CategoryID)) {
+            $posts = $category->BlogPosts();
+        } elseif ($this->BlogID && $blog = Blog::get()->byID($this->BlogID)) {
+            $posts = $blog->getBlogPosts();
         } else {
-            return BlogPost::get()->sort('PublishDate DESC')->limit($this->Limit);
+            $posts = BlogPost::get()->sort('PublishDate DESC');
         }
+
+        return $posts->limit($this->Limit);
     }
+
 
     /**
      * @return DBHTMLText
