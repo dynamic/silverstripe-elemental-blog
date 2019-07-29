@@ -1,6 +1,26 @@
 # Change Log
 
-## [2.1.1](https://github.com/dynamic/silverstripe-elemental-blog/tree/2.1.1) (2019-03-20)
+## [2.1.2](https://github.com/dynamic/silverstripe-elemental-blog/tree/2.1.2) (2019-07-29)
+[Full Changelog](https://github.com/dynamic/silverstripe-elemental-blog/compare/1.0.2...2.1.2)
+
+**Merged pull requests:**
+
+- UPDATE repository updates [\#25](https://github.com/dynamic/silverstripe-elemental-blog/pull/25) ([muskie9](https://github.com/muskie9))
+- Better handle edge cases where ElementBlogPosts targets a missing blog page [\#23](https://github.com/dynamic/silverstripe-elemental-blog/pull/23) ([maxime-rainville](https://github.com/maxime-rainville))
+
+## [1.0.2](https://github.com/dynamic/silverstripe-elemental-blog/tree/1.0.2) (2019-05-15)
+[Full Changelog](https://github.com/dynamic/silverstripe-elemental-blog/compare/2.1.1...1.0.2)
+
+**Fixed bugs:**
+
+- BUG check if blog query returns blog before additional queries/filters [\#21](https://github.com/dynamic/silverstripe-elemental-blog/issues/21)
+
+**Merged pull requests:**
+
+- BUGFIX ensure blog query returns blog before additional queries/filters [\#22](https://github.com/dynamic/silverstripe-elemental-blog/pull/22) ([muskie9](https://github.com/muskie9))
+- Change ElementBlogPosts $icon static [\#20](https://github.com/dynamic/silverstripe-elemental-blog/pull/20) ([LABCAT](https://github.com/LABCAT))
+
+## [2.1.1](https://github.com/dynamic/silverstripe-elemental-blog/tree/2.1.1) (2019-03-21)
 [Full Changelog](https://github.com/dynamic/silverstripe-elemental-blog/compare/2.1.0...2.1.1)
 
 **Closed issues:**
