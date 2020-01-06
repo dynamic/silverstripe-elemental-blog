@@ -76,10 +76,10 @@ class ElementBlogPosts extends BaseElement
 
             if (class_exists(Blog::class)) {
                 $fields->insertBefore(
+                    'Limit',
                     $fields->dataFieldByName('BlogID')
                         ->setTitle(_t(__CLASS__ . 'BlogLabel', 'Featured Blog'))
-                        ->setEmptyString(''),
-                    'Limit'
+                        ->setEmptyString('')
                 );
 
                 $dataSource = function ($val) {
