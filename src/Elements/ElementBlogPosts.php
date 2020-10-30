@@ -10,6 +10,7 @@ use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\RequiredFields;
+use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\ORM\FieldType\DBHTMLText;
@@ -106,12 +107,12 @@ class ElementBlogPosts extends BaseElement
     }
 
     /**
-     * @return mixed
+     * @return ArrayList|DataList
      */
     public function getPostsList()
     {
-        /** @var DataList $posts */
-        $posts = null;
+        /** @var ArrayList $posts */
+        $posts = ArrayList::create();
 
         if ($this->BlogID && $this->CategoryID && $category = BlogCategory::get()->byID($this->CategoryID)) {
             $posts = $category->BlogPosts();
@@ -120,6 +121,8 @@ class ElementBlogPosts extends BaseElement
         } else {
             $posts = BlogPost::get()->sort('PublishDate DESC');
         }
+
+        $this->extend('updateGetPostsList', $posts);
 
         return $posts->limit($this->Limit);
     }
