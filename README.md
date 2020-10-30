@@ -2,10 +2,10 @@
 
 Recent Blog Posts Element for the SilverStripe Elemental module.
 
+![CI](https://github.com/dynamic/silverstripe-elemental-blog/workflows/CI/badge.svg)
 [![Build Status](https://travis-ci.org/dynamic/silverstripe-elemental-blog.svg?branch=master)](https://travis-ci.org/dynamic/silverstripe-elemental-blog)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/badges/build.png?b=master)](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/build-status/master)
 [![codecov](https://codecov.io/gh/dynamic/silverstripe-elemental-blog/branch/master/graph/badge.svg)](https://codecov.io/gh/dynamic/silverstripe-elemental-blog)
 
 [![Latest Stable Version](https://poser.pugx.org/dynamic/silverstripe-elemental-blog/v/stable)](https://packagist.org/packages/dynamic/silverstripe-elemental-blog)
