@@ -1,5 +1,5 @@
 <phpunit bootstrap="vendor/silverstripe/cms/tests/bootstrap.php" colors="true">
-    <testsuite name="dynamic-elements">
+    <testsuite name="dynamic/silverstripe-elemental-blog">
         <directory>tests</directory>
     </testsuite>
 
