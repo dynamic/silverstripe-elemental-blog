@@ -18,7 +18,7 @@
     "license": "BSD-3-Clause",
     "require": {
         "silverstripe/blog": "^3.0",
-        "dnadesign/silverstripe-elemental": "^4.0",
+        "dnadesign/silverstripe-elemental": "^4.8",
         "sheadawson/silverstripe-dependentdropdownfield": "^2.0"
     },
     "require-dev": {
