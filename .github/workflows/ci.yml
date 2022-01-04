@@ -60,7 +60,7 @@ jobs:
         run: "composer install --no-ansi --no-interaction --no-progress"
 
       - name: "Install phpunit"
-        run: "composer require --dev --no-ansi --no-interaction --no-progress phpunit ^9.5"
+        run: "composer require --dev --no-ansi --no-interaction --no-progress phpunit/phpunit ^9.5"
 
       - name: "Run tests with phpunit/phpunit"
         env:
