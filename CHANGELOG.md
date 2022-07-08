@@ -1,12 +1,14 @@
 # Changelog
 
-## [2.2.0](https://github.com/dynamic/silverstripe-elemental-blog/tree/2.2.0) (2022-02-25)
+## [2.2.0](https://github.com/dynamic/silverstripe-elemental-blog/tree/2.2.0) (2022-06-07)
 
-[Full Changelog](https://github.com/dynamic/silverstripe-elemental-blog/compare/2.1.3...2.2.0)
+## What's Changed
+* UPDATE workflows ci by @muskie9 in https://github.com/dynamic/silverstripe-elemental-blog/pull/32
+* REFACTOR allow PHP 8 and phpunit 9 by @jsirish in https://github.com/dynamic/silverstripe-elemental-blog/pull/31
+* BUGFIX Composer - update info by @jsirish in https://github.com/dynamic/silverstripe-elemental-blog/pull/34
 
-**Merged pull requests:**
 
-- UPDATE workflows ci [\#32](https://github.com/dynamic/silverstripe-elemental-blog/pull/32) ([muskie9](https://github.com/muskie9))
+**Full Changelog**: https://github.com/dynamic/silverstripe-elemental-blog/compare/2.1.3...2.2.0
 
 ## [2.1.3](https://github.com/dynamic/silverstripe-elemental-blog/tree/2.1.3) (2020-10-30)
 
