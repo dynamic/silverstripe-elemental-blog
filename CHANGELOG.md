@@ -6,7 +6,7 @@
 * UPDATE workflows ci by @muskie9 in https://github.com/dynamic/silverstripe-elemental-blog/pull/32
 * REFACTOR allow PHP 8 and phpunit 9 by @jsirish in https://github.com/dynamic/silverstripe-elemental-blog/pull/31
 * BUGFIX Composer - update info by @jsirish in https://github.com/dynamic/silverstripe-elemental-blog/pull/34
-
+* CI remove travis and scrutinizer by @jsirish in https://github.com/dynamic/silverstripe-elemental-blog/pull/35
 
 **Full Changelog**: https://github.com/dynamic/silverstripe-elemental-blog/compare/2.1.3...2.2.0
 
