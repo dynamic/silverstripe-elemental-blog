@@ -5,7 +5,7 @@
         {
             "name": "Dynamic",
             "email": "dev@dynamicagency.com",
-            "homepage": "http://www.dynamicagency.com"
+            "homepage": "https://www.dynamicagency.com"
         }
     ],
     "keywords": [
@@ -17,7 +17,6 @@
     "type": "silverstripe-vendormodule",
     "license": "BSD-3-Clause",
     "require": {
-        "ext-zip": "*",
         "silverstripe/blog": "^3.0",
         "dnadesign/silverstripe-elemental": "^4.8",
         "sheadawson/silverstripe-dependentdropdownfield": "^2.0"
@@ -33,6 +32,11 @@
         }
     },
     "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "silverstripe/vendor-plugin": true,
+            "silverstripe/recipe-plugin": true
+        },
         "process-timeout": 600
     },
     "minimum-stability": "dev",
