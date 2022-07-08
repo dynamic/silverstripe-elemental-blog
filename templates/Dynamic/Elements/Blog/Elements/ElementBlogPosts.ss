@@ -20,8 +20,9 @@
                 </div>
             </div>
         <% end_loop %>
+        <p><a href="$Blog.Link" class="btn btn-primary" title="Go to the $Title page">View all posts</a></p>
     </div>
-    <p><a href="$Blog.Link" class="btn btn-primary" title="Go to the $Title page">View all posts</a></p>
+
 <% else %>
     <p>No recent posts.</p>
 <% end_if %>
