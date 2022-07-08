@@ -2,21 +2,25 @@
 <% if $Content %><div class="element__content">$Content</div><% end_if %>
 
 <% if $PostsList %>
-    <% loop $PostsList %>
-        <h3>
-            <a href="$Link.ATT" title="Go to the $Title post">
-                $Title
-            </a>
-        </h3>
-
-        <% include SilverStripe\\Blog\\EntryMeta %>
-
-        <% if $Summary %>
-            $Summary
-        <% else %>
-            <p>$Excerpt</p>
-        <% end_if %>
-    <% end_loop %>
+    <div class="row">
+        <% loop $PostsList %>
+            <div class="col-md-4 card">
+                <img src="$FeaturedImage.URL" class="card-img-top">
+                <div class="card-body">
+                    <h3 class="card-title">
+                        <a href="$Link.ATT" title="Go to the $Title post">
+                            $Title
+                        </a>
+                    </h3>
+                    <% include SilverStripe\\Blog\\EntryMeta %>
+                    <div class="card-text">
+                        $Summary
+                    </div>
+                    <a href="$Link.ATT" class="btn btn-primary">Read more</a>
+                </div>
+            </div>
+        <% end_loop %>
+    </div>
     <p><a href="$Blog.Link" class="btn btn-primary" title="Go to the $Title page">View all posts</a></p>
 <% else %>
     <p>No recent posts.</p>
