@@ -1,22 +1,20 @@
 <?php
 
-namespace Dynamic\Elements\Blog\Elements\Tests;
+namespace Dynamic\Elements\Blog\Tests\Elements;
 
 use Dynamic\Elements\Blog\Elements\ElementBlogPosts;
-use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Blog\Model\BlogCategory;
 use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\ORM\DataList;
-use SilverStripe\ORM\SS_List;
 
 class ElementBlogPostsTest extends SapphireTest
 {
     /**
      * @var string
      */
-    protected static $fixture_file = 'element-blog-posts.yml';
+    protected static $fixture_file = 'ElementBlogPostsTest.yml';
 
     /**
      *
