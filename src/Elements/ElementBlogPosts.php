@@ -43,25 +43,25 @@ class ElementBlogPosts extends BaseElement
     /**
      * @var array
      */
-    private static $db = array(
+    private static $db = [
         'Limit' => 'Int',
         'Content' => 'HTMLText',
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $has_one = array(
+    private static $has_one = [
         'Blog' => Blog::class,
         'Category' => BlogCategory::class,
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $defaults = array(
+    private static $defaults = [
         'Limit' => 3,
-    );
+    ];
 
     /**
      * @return FieldList
@@ -85,7 +85,9 @@ class ElementBlogPosts extends BaseElement
 
                 $dataSource = function ($val) {
                     if ($val) {
-                        return Blog::get()->byID($val)->Categories()->map('ID', 'Title');
+                        if ($blog = Blog::get()->byID($val)) {
+                            return $blog->Categories()->map('ID', 'Title');
+                        }
                     }
                     return [];
                 };
@@ -137,7 +139,7 @@ class ElementBlogPosts extends BaseElement
         $label = _t(
             BlogPost::class . '.PLURALS',
             'A Blog Post|{count} Blog Posts',
-            [ 'count' => $count ]
+            ['count' => $count]
         );
         return DBField::create_field('HTMLText', $label)->Summary(20);
     }
