@@ -88,7 +88,6 @@ class ElementBlogPosts extends BaseElement
                         if ($blog = Blog::get()->byID($val)) {
                             return $blog->Categories()->map('ID', 'Title');
                         }
-
                     }
                     return [];
                 };
