@@ -30,38 +30,29 @@ use SilverStripe\ORM\ValidationResult;
  */
 class ElementBlogPosts extends BaseElement
 {
-    /**
-     * @var string
-     */
-    private static $icon = 'font-icon-menu-campaigns';
+    private static string $icon = 'font-icon-menu-campaigns';
 
-    /**
-     * @var string
-     */
-    private static $table_name = 'ElementBlogPosts';
+    private static string $table_name = 'ElementBlogPosts';
 
-    /**
-     * @var array
-     */
-    private static $db = array(
+    private static array $db = [
         'Limit' => 'Int',
         'Content' => 'HTMLText',
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $has_one = array(
+    private static array $has_one = [
         'Blog' => Blog::class,
         'Category' => BlogCategory::class,
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $defaults = array(
+    private static array $defaults = [
         'Limit' => 3,
-    );
+    ];
 
     /**
      * @return FieldList

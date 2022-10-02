@@ -19,7 +19,7 @@ class ElementBlogPostsTest extends SapphireTest
     /**
      *
      */
-    public function testGetSummary()
+    public function testGetSummary(): void
     {
         $object = $this->objFromFixture(ElementBlogPosts::class, 'one');
         $count = $object->getPostsList()->count();
@@ -36,7 +36,7 @@ class ElementBlogPostsTest extends SapphireTest
     /**
      *
      */
-    public function testGetType()
+    public function testGetType(): void
     {
         $object = $this->objFromFixture(ElementBlogPosts::class, 'one');
         $this->assertEquals($object->getType(), 'Blog Posts');
@@ -45,7 +45,7 @@ class ElementBlogPostsTest extends SapphireTest
     /**
      *
      */
-    public function testGetCMSFields()
+    public function testGetCMSFields(): void
     {
         $object = $this->objFromFixture(ElementBlogPosts::class, 'one');
         $fields = $object->getCMSFields();
@@ -56,7 +56,7 @@ class ElementBlogPostsTest extends SapphireTest
     /**
      *
      */
-    public function testGetPostsList()
+    public function testGetPostsList(): void
     {
         $object = $this->objFromFixture(ElementBlogPosts::class, 'one');
         $this->compareList(
@@ -94,7 +94,7 @@ class ElementBlogPostsTest extends SapphireTest
      * @param DataList $actual
      * @param string $message
      */
-    private function compareList(DataList $expected, DataList $actual, $message = '')
+    private function compareList(DataList $expected, DataList $actual, $message = ''): void
     {
         $expectedArray = $expected->map('ID', 'ClassName')->toArray();
         $actualArray = $expected->map('ID', 'ClassName')->toArray();

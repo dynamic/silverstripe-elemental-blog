@@ -17,6 +17,7 @@
     "type": "silverstripe-vendormodule",
     "license": "BSD-3-Clause",
     "require": {
+        "php": "^7.4 || ^8.0",
         "silverstripe/blog": "^3.0",
         "dnadesign/silverstripe-elemental": "^4.8",
         "sheadawson/silverstripe-dependentdropdownfield": "^2.0"
