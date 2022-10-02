@@ -22,6 +22,17 @@ Recent Blog Posts Element for the SilverStripe Elemental module.
 
 ## Usage
 
+There are four blocks available for you to use. It is likely that you will not want all of them to be available to
+content authors, so it is recommended that you review what the purpose of each block is, and then add the ones you don't
+need to `disallowed_elements`.
+
+The four blocks are:
+
+* [ElementBlogPosts](#elementblogposts)
+* [ElementBlogOverview](#elementblogoverview)
+* [ElementBlogPagination](#elementblogpagination)
+* [ElementBlogWidgets](#elementblogwidgets)
+
 ### ElementBlogPosts
 
 A block to show a list of recent posts by a featured blog. Ideal for home pages or dashboards.
@@ -39,15 +50,50 @@ template.
 - Pagination
 - Widgets (if the addon as been added and enabled)
 
+![Overview Block - Single](./readme-images/overview-block-single.png)
+
 You will likely want to override the very basic default template that has been provided, you can do so by overriding the
 template found with the namespace `Dynamic\Elements\Blog\Elements\ElementBlogOverview.ss`.
+
+#### Controlling pagination & widgets for this block
+
+**Pagination config:**
+
+* `pagination_field_default`: `1` (pagination is enabled by default)
+* `show_pagination_field`: `true` (content authors have the ability to turn pagination on or off)
+
+With the default configuration, when an author creates a new Overview block, they will be presented with a checkbox
+to "Show pagination" (which will be ticked by default). If you do **not** want your authors to be able to disable
+pagination, then you can update the `show_pagination_field` config to `false`.
+
+```yaml
+Dynamic\Elements\Blog\Elements\ElementBlogOverview:
+  show_pagination_field: false
+```
+
+If you would like pagination to be turned **off** by default, then you can update the `pagination_field_default` to `0`.
+
+```yaml
+Dynamic\Elements\Blog\Elements\ElementBlogOverview:
+  pagination_field_default: 0
+```
+
+**Widget config:**
+
+* `widgets_field_default`: `0` (widgets are disabled by default)
+* `show_widgets_field`: `false` (the "Show widgets" field is not displayed to authors by default)
+
+Because the Widget module is an optional addon, the default settings for Widgets is for them to be disabled. You have
+the same control over the Widgets config as you do for Pagination.
+
+#### Using this block on Page types other than `Blog`
 
 **Please consider:** While the Overview block does support you using it on other page types, it is primarily designed to
 be used on Blog page types. This is because it is `Blog` and `BlogController` that provide the relevant info to this
 block.
 
 Please consider whether you want this block to be available to other page types, and if you don't, you might want to
-add this block as a `disallowed` Element on your other page types. EG:
+add this block to `disallowed_elements` on your other page types. EG:
 
 ```yaml
 App\Model\Page\MyPage:
@@ -56,7 +102,7 @@ App\Model\Page\MyPage:
 ```
 
 If you do wish this block to be available on other page types, then please review the contents on the class to see how
-you can dictate what data should be provided through this block.
+you can dictate what data should be provided to this block.
 
 ## ElementBlogPagination
 
@@ -71,6 +117,8 @@ Page:
   disallowed_elements:
     - Dynamic\Elements\Blog\Elements\ElementBlogPagination
 ```
+
+![Overview Block Separated](./readme-images/overview-block-separated.png)
 
 ## ElementBlogWidgets
 
