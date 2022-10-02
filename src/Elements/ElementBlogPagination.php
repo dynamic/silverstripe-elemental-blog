@@ -71,5 +71,5 @@ class ElementBlogPagination extends ElementBlogOverview
     /**
      * Default value used for the message field in the CMS. You can update this via config
      */
-    private static string $info_message_field_default = 'This block will automatically display pagination for Blog Posts';
+    private static string $info_message_field_default = 'This block automatically displays pagination for Blog Posts';
 }

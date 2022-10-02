@@ -110,7 +110,7 @@ class ElementBlogOverview extends BaseElement
     /**
      * Default value used for the message field in the CMS
      */
-    private static string $info_message_field_default = 'This block will automatically display Blog Posts and pagination';
+    private static string $info_message_field_default = 'This block automatically displays Blog Posts and pagination';
 
     /**
      * Cached value for BlogPosts from the Blog page
