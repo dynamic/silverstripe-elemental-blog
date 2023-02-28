@@ -27,46 +27,26 @@ use SilverStripe\Widgets\Model\WidgetArea;
  */
 class ElementBlogOverview extends BaseElement
 {
-    /**
-     * @var array
-     */
-    private static $db = [
+    private static array $db = [
         'Content' => 'HTMLText',
         'ShowPagination' => 'Boolean(0)',
         'ShowWidgets' => 'Boolean(0)',
     ];
 
-    /**
-     * @var string
-     */
-    private static $icon = 'font-icon-p-articles';
+    private static string $icon = 'font-icon-p-articles';
 
-    /**
-     * @var string
-     */
-    private static $table_name = 'ElementBlogOverview';
+    private static string $table_name = 'ElementBlogOverview';
 
-    /**
-     * @var string
-     */
-    private static $singular_name = 'Element blog overview';
+    private static string $singular_name = 'Element blog overview';
 
-    /**
-     * @var string
-     */
-    private static $plural_name = 'Element blog overview blocks';
+    private static string $plural_name = 'Element blog overview blocks';
 
-    /**
-     * @var string
-     */
-    private static $description = 'Block displaying Blog Posts with pagination';
+    private static string $description = 'Block displaying Blog Posts with pagination';
 
     /**
      * We use this default_title for the Block name in the CMS. Feel free to update it via config
-     *
-     * @var string
      */
-    private static $default_title = 'Element Blog Overview';
+    private static string $default_title = 'Element Blog Overview';
 
     /**
      * The main purpose of this Block is to replace the standard Blog Layout functionality (including pagination,
@@ -76,81 +56,61 @@ class ElementBlogOverview extends BaseElement
      * By default, this Block will return null in all the areas where it expects to find a Blog/BlogController if it
      * does not. However, if you enable this Block to be used elsewhere, there are extension points/etc available for
      * you to return/update the DataList/Paginated list in other ways
-     *
-     * @var bool
      */
-    private static $allow_use_outside_of_blog = false;
+    private static bool $allow_use_outside_of_blog = false;
 
     /**
      * Depending on your config, there is potentially no reason for a content author to enter this Block to make any
      * edits, if that is the case for you, then it likely makes sense that you just set a title for them by default
-     *
-     * @var bool
      */
-    private static $set_default_title = false;
+    private static bool $set_default_title = false;
 
     /**
      * You can set this to false if you would prefer that we do not display the default Title field that Elemental
      * provides to users
-     *
-     * @var bool
      */
-    private static $show_title_field = true;
+    private static bool $show_title_field = true;
 
     /**
      * You can set this to false if you would prefer that we do not display the HTMLEditor/$Content field to users
-     *
-     * @var bool
      */
-    private static $show_content_field = true;
+    private static bool $show_content_field = true;
 
     /**
      * By default, we show the "Show Pagination" field in the CMS (since it is part of the default supported features).
      * You may, however, prefer that content authors display pagination for the Blog using the specific
      * `PaginationBlock`, and if that's the case, you'll likely want to set this to false via config, as it will no
      * longer be relevant for your content authors
-     *
-     * @var int
      */
-    private static $show_pagination_field = true;
+    private static bool $show_pagination_field = true;
 
     /**
      * Default value for ShowPagination. If set, this block will also output the pagination for your Blog. You can
      * update this value via config
-     *
-     * @var int
      */
-    private static $pagination_field_default = 1;
+    private static int $pagination_field_default = 1;
 
     /**
      * Since the Widgets module is an addon for the Blog module (and not out of the box), we've hidden the CMS field by
      * default. You can update this via config if you would like to display the field for your authors
-     *
-     * @var int
      */
-    private static $show_widgets_field = false;
+    private static bool $show_widgets_field = false;
 
     /**
      * Since the Widgets module is an addon for the Blog module (and not out of the box), we've set the default for this
      * field to be `0`. You can update this via config
-     *
-     * @var int
      */
-    private static $widgets_field_default = 0;
+    private static int $widgets_field_default = 0;
 
     /**
      * This can be updated via config if (for whatever reason) you do not wish to show this message field in the CMS
-     *
-     * @var int
      */
-    private static $show_info_message_field = true;
+    private static bool $show_info_message_field = true;
 
     /**
      * Default value used for the message field in the CMS
-     *
-     * @var string
      */
-    private static $info_message_field_default = 'This block will automatically display Blog Posts and pagination';
+    private static string $info_message_field_default = 'This block automatically displays Blog Posts and pagination';
 
     /**
      * Cached value for BlogPosts from the Blog page
