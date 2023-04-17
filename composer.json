@@ -17,12 +17,12 @@
     "type": "silverstripe-vendormodule",
     "license": "BSD-3-Clause",
     "require": {
-        "silverstripe/blog": "^3.0",
-        "dnadesign/silverstripe-elemental": "^4.8",
-        "sheadawson/silverstripe-dependentdropdownfield": "^2.0"
+        "silverstripe/blog": "^4.0",
+        "dnadesign/silverstripe-elemental": "^5.0",
+        "sheadawson/silverstripe-dependentdropdownfield": "^3.0"
     },
     "require-dev": {
-        "silverstripe/recipe-testing": "^2",
+        "silverstripe/recipe-testing": "^3",
         "squizlabs/php_codesniffer": "^3.0"
     },
     "autoload": {
@@ -44,5 +44,11 @@
     "scripts": {
         "lint": "vendor/bin/phpcs src/ tests/",
         "lint-clean": "vendor/bin/phpcbf src/ tests/"
+    },
+    "extra": {
+        "project-files-installed": [
+            "behat.yml",
+            "phpunit.xml.dist"
+        ]
     }
 }
