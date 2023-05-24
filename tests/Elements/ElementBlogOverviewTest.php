@@ -38,9 +38,9 @@ class ElementBlogOverviewTest extends SapphireTest
         $this->assertFalse((bool) $block->ShowWidgets);
 
         // Update our config settings
-        ElementBlogOverview::config()->update('set_default_title', true);
-        ElementBlogOverview::config()->update('pagination_field_default', 0);
-        ElementBlogOverview::config()->update('widgets_field_default', 1);
+        ElementBlogOverview::config()->set('set_default_title', true);
+        ElementBlogOverview::config()->set('pagination_field_default', 0);
+        ElementBlogOverview::config()->set('widgets_field_default', 1);
 
         $block = ElementBlogOverview::create();
         $this->assertEquals(ElementBlogOverview::config()->get('default_title'), $block->Title);
@@ -80,7 +80,7 @@ class ElementBlogOverviewTest extends SapphireTest
     public function testGetBlogPostsCustom(): void
     {
         // Update our config to allow this Block type to be used outside of the Blog
-        ElementBlogOverview::config()->update('allow_use_outside_of_blog', true);
+        ElementBlogOverview::config()->set('allow_use_outside_of_blog', true);
 
         /** @var ElementBlogOverview $block */
         $block = $this->objFromFixture(ElementBlogOverview::class, 'block4');
@@ -98,7 +98,7 @@ class ElementBlogOverviewTest extends SapphireTest
     public function testGetBlogPostsDefault(): void
     {
         // Update our config to allow this Block type to be used outside of the Blog
-        ElementBlogOverview::config()->update('allow_use_outside_of_blog', true);
+        ElementBlogOverview::config()->set('allow_use_outside_of_blog', true);
 
         /** @var ElementBlogOverview $block */
         $block = $this->objFromFixture(ElementBlogOverview::class, 'block3');
@@ -192,7 +192,7 @@ class ElementBlogOverviewTest extends SapphireTest
     public function testSideBarCustom(): void
     {
         // Update our config to allow this Block type to be used outside of the Blog
-        ElementBlogOverview::config()->update('allow_use_outside_of_blog', true);
+        ElementBlogOverview::config()->set('allow_use_outside_of_blog', true);
 
         /** @var ElementBlogOverview $block */
         $block = $this->objFromFixture(ElementBlogOverview::class, 'block4');
