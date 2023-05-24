@@ -12,8 +12,8 @@ Recent Blog Posts Element for the SilverStripe Elemental module.
 
 ## Requirements
 
-- silverstripe/blog: ^4.0@dev
-- dnadesign/silverstripe-elemental: ^5@dev
+- silverstripe/blog: ^4.0
+- dnadesign/silverstripe-elemental: ^5.0
 
 ## Installation
 
@@ -52,7 +52,7 @@ template.
 - Pagination
 - Widgets (if the addon as been added and enabled)
 
-![Overview Block - Single](./readme-images/overview-block-single.png)
+![Overview Block - Single](./docs/en/_images/overview-block-single.png)
 
 You will likely want to override the very basic default template that has been provided, you can do so by overriding the
 template found with the namespace `Dynamic\Elements\Blog\Elements\ElementBlogOverview.ss`.
@@ -120,7 +120,7 @@ Page:
     - Dynamic\Elements\Blog\Elements\ElementBlogPagination
 ```
 
-![Overview Block Separated](./readme-images/overview-block-separated.png)
+![Overview Block Separated](./docs/en/_images/overview-block-separated.png)
 
 ## ElementBlogWidgets
 
