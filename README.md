@@ -3,7 +3,6 @@
 Recent Blog Posts Element for the SilverStripe Elemental module.
 
 ![CI](https://github.com/dynamic/silverstripe-elemental-blog/workflows/CI/badge.svg)
-[![Code Coverage](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/dynamic/silverstripe-elemental-blog/?branch=master)
 [![codecov](https://codecov.io/gh/dynamic/silverstripe-elemental-blog/branch/master/graph/badge.svg)](https://codecov.io/gh/dynamic/silverstripe-elemental-blog)
 
 [![Latest Stable Version](https://poser.pugx.org/dynamic/silverstripe-elemental-blog/v/stable)](https://packagist.org/packages/dynamic/silverstripe-elemental-blog)
@@ -13,12 +12,15 @@ Recent Blog Posts Element for the SilverStripe Elemental module.
 
 ## Requirements
 
-- silverstripe/blog: ^3.0@dev
-- dnadesign/silverstripe-elemental: ^4@dev
+- silverstripe/blog: ^4.0@dev
+- dnadesign/silverstripe-elemental: ^5@dev
 
 ## Installation
 
 `composer require dynamic/silverstripe-elemental-blog`
+
+## License
+See [License](license.md)
 
 ## Usage
 
@@ -134,18 +136,30 @@ Page:
     - Dynamic\Elements\Blog\Elements\ElementBlogWidgets
 ```
 
-## Screen Shots
-
-#### Front End sample of a Blog Element
-![Front End sample of a Blog Element](./readme-images/blog-block-sample.jpg)
-
-#### CMS - Blog Element Main Tab
-![CMS - Blog Element Main Tab](./readme-images/blog-block-cms.jpg)
-
 ## Getting more elements
 
-See [Elemental modules by Dynamic](https://github.com/dynamic/silverstripe-elemental-blocks#getting-more-elements)
+See [Elemental modules by Dynamic](https://github.com/orgs/dynamic/repositories?q=elemental&type=all&language=&sort=)
 
 ## Configuration
 
 See [SilverStripe Elemental Configuration](https://github.com/dnadesign/silverstripe-elemental#configuration)
+
+## Maintainers
+ *  [Dynamic](http://www.dynamicagency.com) (<dev@dynamicagency.com>)
+
+## Bugtracker
+Bugs are tracked in the issues section of this repository. Before submitting an issue please read over
+existing issues to ensure yours is unique.
+
+If the issue does look like a new bug:
+
+ - Create a new issue
+ - Describe the steps required to reproduce your issue, and the expected outcome. Unit tests, screenshots
+ and screencasts can help here.
+ - Describe your environment as detailed as possible: SilverStripe version, Browser, PHP version,
+ Operating System, any installed SilverStripe modules.
+
+Please report security issues to the module maintainers directly. Please don't file security issues in the bugtracker.
+
+## Development and contribution
+If you would like to make contributions to the module please ensure you raise a pull request and discuss with the module maintainers.

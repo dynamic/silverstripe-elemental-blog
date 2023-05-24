@@ -1,7 +1,8 @@
-<phpunit bootstrap="vendor/silverstripe/cms/tests/bootstrap.php" colors="true">
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/silverstripe/framework/tests/bootstrap.php" colors="true">
     <testsuites>
-        <testsuite name="elemental-blog">
-            <directory>tests/</directory>
+        <testsuite name="Default">
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
     <filter>

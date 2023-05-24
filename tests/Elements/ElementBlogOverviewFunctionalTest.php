@@ -73,7 +73,7 @@ class ElementBlogOverviewFunctionalTest extends SapphireTest
     public function testPaginatedListCustom(): void
     {
         // Update our config to allow this Block type to be used outside of the Blog
-        ElementBlogOverview::config()->update('allow_use_outside_of_blog', true);
+        ElementBlogOverview::config()->set('allow_use_outside_of_blog', true);
 
         /** @var ElementBlogOverview $block */
         $block = $this->objFromFixture(ElementBlogOverview::class, 'block2');
@@ -89,7 +89,7 @@ class ElementBlogOverviewFunctionalTest extends SapphireTest
     public function testPaginatedListDefault(): void
     {
         // Update our config to allow this Block type to be used outside of the Blog
-        ElementBlogOverview::config()->update('allow_use_outside_of_blog', true);
+        ElementBlogOverview::config()->set('allow_use_outside_of_blog', true);
 
         /** @var ElementBlogOverview $block */
         $block = $this->objFromFixture(ElementBlogOverview::class, 'block2');
