@@ -30,7 +30,7 @@ class ElementBlogPagination extends ElementBlogOverview
     /**
      * We use this default_title for the Block name in the CMS. Feel free to update it via config
      */
-    private static string $default_title = 'Element Blog Pagination';
+    private static string $default_title = 'Blog Pagination';
 
     private static bool $allow_use_outside_of_blog = false;
 
