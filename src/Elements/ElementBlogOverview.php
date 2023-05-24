@@ -46,7 +46,7 @@ class ElementBlogOverview extends BaseElement
     /**
      * We use this default_title for the Block name in the CMS. Feel free to update it via config
      */
-    private static string $default_title = 'Element Blog Overview';
+    private static string $default_title = 'Blog Overview';
 
     /**
      * The main purpose of this Block is to replace the standard Blog Layout functionality (including pagination,
