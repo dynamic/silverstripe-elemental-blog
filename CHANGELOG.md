@@ -1,4 +1,22 @@
 # Change Log
+
+## What's Changed
+* Docs: Update documentation for Overview block by @chrispenny in https://github.com/dynamic/silverstripe-elemental-blog/pull/40
+* MNT: Require PHP ^7.4 or ^8 by @chrispenny in https://github.com/dynamic/silverstripe-elemental-blog/pull/41
+* REFACTOR Elemental 5 by @jsirish in https://github.com/dynamic/silverstripe-elemental-blog/pull/43
+* REFACTOR update element names by @jsirish in https://github.com/dynamic/silverstripe-elemental-blog/pull/45
+* README updates by @jsirish in https://github.com/dynamic/silverstripe-elemental-blog/pull/44
+
+
+**Full Changelog**: https://github.com/dynamic/silverstripe-elemental-blog/compare/2.3.0...3.0.0
+
+## What's Changed
+* Add new blocks supporting Pagination and Widgets by @chrispenny in #28
+### New Contributors
+@chrispenny made their first contribution in #28
+
+Full Changelog: https://github.com/dynamic/silverstripe-elemental-blog/compare/2.2.0...2.3.0
+
 ## [2.2.0](https://github.com/dynamic/silverstripe-elemental-blog/tree/2.2.0) (2022-07-15)
 
 ## What's Changed
