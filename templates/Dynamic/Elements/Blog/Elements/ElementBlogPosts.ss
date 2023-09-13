@@ -2,27 +2,19 @@
 <% if $Content %><div class="element__content">$Content</div><% end_if %>
 
 <% if $PostsList %>
-    <div class="row">
+    <div class="row element__blog__list">
         <% loop $PostsList %>
-            <div class="col-md-4 card">
-                <img src="$FeaturedImage.URL" class="card-img-top">
-                <div class="card-body">
-                    <h3 class="card-title">
-                        <a href="$Link.ATT" title="Go to the $Title post">
-                            $Title
-                        </a>
-                    </h3>
-                    <% include SilverStripe\\Blog\\EntryMeta %>
-                    <div class="card-text">
-                        $Summary
-                    </div>
-                    <a href="$Link.ATT" class="btn btn-primary">Read more</a>
-                </div>
-            </div>
+            <% include ElementBlogSummary %>
         <% end_loop %>
-        <p><a href="$Blog.Link" class="btn btn-primary" title="Go to the $Title page">View all posts</a></p>
     </div>
-
+    <div class="row mb-3">
+        <div class="col-md-12 text-center">
+            <p>
+                <a href="$Blog.Link" class="btn btn-primary" title="View all $Title posts">
+                    View all posts
+                </a>
+            </p>
+        </div>
 <% else %>
     <p>No recent posts.</p>
 <% end_if %>
