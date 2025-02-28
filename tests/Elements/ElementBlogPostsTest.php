@@ -27,7 +27,7 @@ class ElementBlogPostsTest extends SapphireTest
             $object->getSummary(),
             _t(
                 BlogPost::class . 'PLURALS',
-                'A Blog Post|{count} Blog Posts',
+                'A Blog Post|{count} Base Pages',
                 ['count' => $count]
             )
         );
