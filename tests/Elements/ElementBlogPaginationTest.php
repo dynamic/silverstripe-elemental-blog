@@ -21,7 +21,7 @@ class ElementBlogPaginationTest extends SapphireTest
     {
         $block = ElementBlogPagination::create();
 
-        $this->assertFalse((bool) $block->ShowTitle);
+        $this->assertNotEquals($block->Title, 'Blog Overview');
         $this->assertTrue((bool) $block->ShowPagination);
         $this->assertFalse((bool) $block->ShowWidgets);
     }

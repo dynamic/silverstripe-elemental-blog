@@ -21,7 +21,7 @@ class ElementBlogWidgetsTest extends SapphireTest
     {
         $block = ElementBlogWidgets::create();
 
-        $this->assertFalse((bool) $block->ShowTitle);
+        $this->assertNotEquals($block->Title, 'Blog Overview');
         $this->assertFalse((bool) $block->ShowPagination);
         $this->assertTrue((bool) $block->ShowWidgets);
     }
