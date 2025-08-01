@@ -80,6 +80,7 @@ class ElementBlogPosts extends BaseElement
                         if ($blog) {
                             return $blog->Categories()->map('ID', 'Title');
                         }
+                        return [];
                     }
                     return [];
                 };
