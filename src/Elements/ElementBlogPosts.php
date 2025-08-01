@@ -76,7 +76,11 @@ class ElementBlogPosts extends BaseElement
 
                 $dataSource = function ($val) {
                     if ($val) {
-                        return Blog::get()->byID($val)->Categories()->map('ID', 'Title');
+                        $blog = Blog::get()->byID($val);
+                        if ($blog) {
+                            return $blog->Categories()->map('ID', 'Title');
+                        }
+                        return [];
                     }
                     return [];
                 };
