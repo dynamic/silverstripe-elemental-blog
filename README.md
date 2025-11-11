@@ -1,5 +1,7 @@
 # SilverStripe Elemental Blog
 
+[![Sponsors](https://img.shields.io/badge/Sponsor-Dynamic-ff69b4?logo=github-sponsors&logoColor=white)](https://github.com/sponsors/dynamic)
+
 Recent Blog Posts Element for the SilverStripe Elemental module.
 
 ![CI](https://github.com/dynamic/silverstripe-elemental-blog/workflows/CI/badge.svg)
