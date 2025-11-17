@@ -23,18 +23,24 @@
         }
     ],
     "require": {
-        "php": "^8.0",
-        "dnadesign/silverstripe-elemental": "^5.0",
-        "sheadawson/silverstripe-dependentdropdownfield": "^3.0",
-        "silverstripe/framework": "^5.0",
-        "silverstripe/blog": "^4.0"
+        "php": "^8.3",
+        "dnadesign/silverstripe-elemental": "^6.0",
+        "sheadawson/silverstripe-dependentdropdownfield": "^4.0",
+        "silverstripe/framework": "^6.0",
+        "silverstripe/blog": "^5.0"
     },
     "require-dev": {
-        "silverstripe/recipe-testing": "^3",
-        "silverstripe/widgets": "^3.0",
+        "silverstripe/recipe-testing": "^4",
+        "silverstripe/widgets": "dev-feature/cms6-support",
         "squizlabs/php_codesniffer": "^3.0",
         "silverstripe/standards": "^1"
     },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:ishannz/silverstripe-widgets.git"
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
