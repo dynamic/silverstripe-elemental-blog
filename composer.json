@@ -23,14 +23,14 @@
         }
     ],
     "require": {
-        "php": "^8.0",
-        "dnadesign/silverstripe-elemental": "^5.0",
+        "php": "^8.1",
+        "dnadesign/silverstripe-elemental": "^6",
         "sheadawson/silverstripe-dependentdropdownfield": "^3.0",
-        "silverstripe/framework": "^5.0",
-        "silverstripe/blog": "^4.0"
+        "silverstripe/framework": "^6",
+        "silverstripe/blog": "^5.1"
     },
     "require-dev": {
-        "silverstripe/recipe-testing": "^3",
+        "silverstripe/recipe-testing": "^4",
         "silverstripe/widgets": "^3.0",
         "squizlabs/php_codesniffer": "^3.0",
         "silverstripe/standards": "^1"
@@ -54,5 +54,10 @@
     "scripts": {
         "lint": "vendor/bin/phpcs src/ tests/",
         "lint-clean": "vendor/bin/phpcbf src/ tests/"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "4.0.x-dev"
+        }
     }
 }
