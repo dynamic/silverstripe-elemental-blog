@@ -14,8 +14,6 @@ use SilverStripe\Forms\LiteralField;
 use SilverStripe\Model\List\PaginatedList;
 use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\ValidationException;
-use SilverStripe\Widgets\Extensions\WidgetPageExtension;
-use SilverStripe\Widgets\Model\WidgetArea;
 
 /**
  * Class ElementBlogOverview
@@ -23,14 +21,12 @@ use SilverStripe\Widgets\Model\WidgetArea;
  * @package Dynamic\Elements\Blog\Elements
  * @property string $Content
  * @property int $ShowPagination
- * @property int $ShowWidgets
  */
 class ElementBlogOverview extends BaseElement
 {
     private static array $db = [
         'Content' => 'HTMLText',
         'ShowPagination' => 'Boolean(0)',
-        'ShowWidgets' => 'Boolean(0)',
     ];
 
     private static string $icon = 'font-icon-p-articles';
@@ -91,18 +87,6 @@ class ElementBlogOverview extends BaseElement
     private static int $pagination_field_default = 1;
 
     /**
-     * Since the Widgets module is an addon for the Blog module (and not out of the box), we've hidden the CMS field by
-     * default. You can update this via config if you would like to display the field for your authors
-     */
-    private static bool $show_widgets_field = false;
-
-    /**
-     * Since the Widgets module is an addon for the Blog module (and not out of the box), we've set the default for this
-     * field to be `0`. You can update this via config
-     */
-    private static int $widgets_field_default = 0;
-
-    /**
      * This can be updated via config if (for whatever reason) you do not wish to show this message field in the CMS
      */
     private static bool $show_info_message_field = true;
@@ -125,13 +109,6 @@ class ElementBlogOverview extends BaseElement
      * @var PaginatedList|null
      */
     private $paginatedList;
-
-    /**
-     * Cached value for WidgetArea from Blog page
-     *
-     * @var WidgetArea|null
-     */
-    private $widgetArea;
 
     /**
      * Cached value for our CacheKey. It's not all that cheap to generate it, so, we should only do it once per
@@ -163,7 +140,6 @@ class ElementBlogOverview extends BaseElement
         $fields->removeByName([
             'Content',
             'ShowPagination',
-            'ShowWidgets',
         ]);
 
         // Check whether we want to display the default Title field
@@ -194,19 +170,6 @@ class ElementBlogOverview extends BaseElement
             $fields->addFieldToTab(
                 'Root.Main',
                 $showPaginationField
-            );
-        }
-
-        // Check whether we want to allow the author to determine whether or not the Block outputs with widgets
-        if (static::config()->get('show_widgets_field')) {
-            $showWidgetsField = CheckboxField::create('ShowWidgets');
-
-            // An opportunity for you to update this field before it is added (EG: you might want to add a description)
-            $this->invokeWithExtensions('updateShowWidgetsField', $showWidgetsField);
-
-            $fields->addFieldToTab(
-                'Root.Main',
-                $showWidgetsField
             );
         }
 
@@ -243,7 +206,6 @@ class ElementBlogOverview extends BaseElement
 
         // Always set the default for these fields
         $this->ShowPagination = static::config()->get('pagination_field_default');
-        $this->ShowWidgets = static::config()->get('widgets_field_default');
     }
 
     /**
@@ -355,68 +317,6 @@ class ElementBlogOverview extends BaseElement
     }
 
     /**
-     * @return WidgetArea|null
-     * @throws ValidationException
-     */
-    public function SideBarView(): ?WidgetArea
-    {
-        // Return our cached value, if one exists
-        if ($this->widgetArea !== null) {
-            return $this->widgetArea;
-        }
-
-        $page = $this->getPage();
-
-        // There isn't anything we can do if there is no Page. Unlike with BlogPosts, it really doesn't make sense to
-        // return all Widgets in the DB...
-        if ($page === null) {
-            return null;
-        }
-
-        // Check that the parent Page is a Blog page. We also can't get widgets for the Page if the Page type doesn't
-        // have the Widget extension
-        if (!$page instanceof Blog || !$page->hasExtension(WidgetPageExtension::class)) {
-            // You have specified that this Block *cannot* be used outside of the Blog, so that also means that we
-            // expect a parent Page to have been present and of type Blog
-            if (!static::config()->get('allow_use_outside_of_blog')) {
-                return null;
-            }
-
-            // You get one last chance to return a WidgetArea through some other means
-            if ($page->hasMethod('SideBarView')) {
-                // setWidgetArea() requires a class of WidgetArea|null be provided, so, it'll throw exceptions for us if
-                // any other type is provided
-                $this->setWidgetArea($page->SideBarView());
-
-                return $this->widgetArea;
-            }
-
-            return null;
-        }
-
-        // If the Page is inheriting it's SideBar, then we should grab it from the Parent
-        if ($page->InheritSideBar
-            && ($parent = $page->getParent())
-            && $parent->hasMethod('SideBarView')
-        ) {
-            // Store this WidgetArea as our cached value and provide an extension point
-            $this->setWidgetArea($parent->SideBarView());
-
-            return $this->widgetArea;
-        }
-
-        // Otherwise, let's attempt to fetch the SideBar from this current Page
-        if ($page->SideBar()->exists()) {
-            // Store this WidgetArea as our cached value and provide an extension point
-            $this->setWidgetArea($page->SideBar());
-
-            return $this->widgetArea;
-        }
-
-        return null;
-    }
-
-    /**
      * @param PaginatedList|null $paginatedList
      */
     protected function setPaginatedList(?PaginatedList $paginatedList): void
@@ -438,15 +338,5 @@ class ElementBlogOverview extends BaseElement
 
         // Store this DataList as our cached value
         $this->blogPosts = $blogPosts;
-    }
-
-    /**
-     * @param WidgetArea|null $widgetArea
-     */
-    protected function setWidgetArea(?WidgetArea $widgetArea): void
-    {
-        $this->invokeWithExtensions('updateWidgetArea', $widgetArea);
-
-        $this->widgetArea = $widgetArea;
     }
 }

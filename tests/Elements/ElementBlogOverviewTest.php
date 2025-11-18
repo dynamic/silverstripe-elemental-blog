@@ -40,12 +40,10 @@ class ElementBlogOverviewTest extends SapphireTest
         // Update our config settings
         ElementBlogOverview::config()->set('set_default_title', true);
         ElementBlogOverview::config()->set('pagination_field_default', 0);
-        ElementBlogOverview::config()->set('widgets_field_default', 1);
 
         $block = ElementBlogOverview::create();
         $this->assertEquals(ElementBlogOverview::config()->get('default_title'), $block->Title);
         $this->assertFalse((bool) $block->ShowPagination);
-        $this->assertTrue((bool) $block->ShowWidgets);
     }
 
     public function testGetBlogPosts(): void
