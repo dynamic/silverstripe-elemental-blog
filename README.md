@@ -12,28 +12,44 @@ Recent Blog Posts Element for the SilverStripe Elemental module.
 
 ## Requirements
 
-- silverstripe/blog: ^4.0
-- dnadesign/silverstripe-elemental: ^5.0
+* SilverStripe ^6
+* PHP ^8.1
+* silverstripe/blog: ^5.0
+* dnadesign/silverstripe-elemental: ^6.0
 
 ## Installation
 
 `composer require dynamic/silverstripe-elemental-blog`
+
+## Upgrading from version 3.0
+
+SilverStripe Elemental Blog 4.0 is compatible with SilverStripe 6. Key changes:
+
+- Updated to SilverStripe CMS 6
+- Requires PHP 8.1 or higher
+- Updated `silverstripe/blog` to ^5.0 (SS6 compatible)
+- Updated `dnadesign/silverstripe-elemental` to ^6.0 (SS6 compatible)
+- **Removed widget support** - The SilverStripe widget module is no longer supported in SS6
+  - `ElementBlogWidgets` block has been removed
+  - Widget-related configuration options have been removed
+  - If you were using widget functionality, you will need to migrate to alternative solutions
+
+For more information about SilverStripe 6, see the [SilverStripe 6 Upgrade Guide](https://docs.silverstripe.org/en/6/upgrading/).
 
 ## License
 See [License](license.md)
 
 ## Usage
 
-There are four blocks available for you to use. It is likely that you will not want all of them to be available to
+There are three blocks available for you to use. It is likely that you will not want all of them to be available to
 content authors, so it is recommended that you review what the purpose of each block is, and then add the ones you don't
 need to `disallowed_elements`.
 
-The four blocks are:
+The three blocks are:
 
 * [ElementBlogPosts](#elementblogposts)
 * [ElementBlogOverview](#elementblogoverview)
 * [ElementBlogPagination](#elementblogpagination)
-* [ElementBlogWidgets](#elementblogwidgets)
 
 ### ElementBlogPosts
 
@@ -50,7 +66,6 @@ template.
 - Content
 - Blog Posts
 - Pagination
-- Widgets (if the addon as been added and enabled)
 
 ![Overview Block - Single](./docs/en/_images/overview-block-single.png)
 
@@ -79,14 +94,6 @@ If you would like pagination to be turned **off** by default, then you can updat
 Dynamic\Elements\Blog\Elements\ElementBlogOverview:
   pagination_field_default: 0
 ```
-
-**Widget config:**
-
-* `widgets_field_default`: `0` (widgets are disabled by default)
-* `show_widgets_field`: `false` (the "Show widgets" field is not displayed to authors by default)
-
-Because the Widget module is an optional addon, the default settings for Widgets is for them to be disabled. You have
-the same control over the Widgets config as you do for Pagination.
 
 #### Using this block on Page types other than `Blog`
 
@@ -121,20 +128,6 @@ Page:
 ```
 
 ![Overview Block Separated](./docs/en/_images/overview-block-separated.png)
-
-## ElementBlogWidgets
-
-You might decide that you would like Blog Widgets to be displayed quite separately to the Overview. This can be
-achieved by using `ElementBlogWidgets` as a separate block.
-
-**Please consider:** Like the Overview Block, please consider removing this block from any/all Page types that you do
-not want it available on. EG, if you don't want to use it at all, you can disallow it for all pages by default:
-
-```yaml
-Page:
-  disallowed_elements:
-    - Dynamic\Elements\Blog\Elements\ElementBlogWidgets
-```
 
 ## Getting more elements
 
