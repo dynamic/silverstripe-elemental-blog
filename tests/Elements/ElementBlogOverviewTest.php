@@ -9,9 +9,6 @@ use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\ValidationException;
-use SilverStripe\Widgets\Extensions\WidgetPageExtension;
-use SilverStripe\Widgets\Model\Widget;
-use SilverStripe\Widgets\Model\WidgetArea;
 
 class ElementBlogOverviewTest extends SapphireTest
 {
@@ -25,7 +22,6 @@ class ElementBlogOverviewTest extends SapphireTest
      */
     protected static $required_extensions = [
         Page::class => [
-            WidgetPageExtension::class,
             ElementalPageExtension::class,
         ],
     ];
@@ -35,7 +31,6 @@ class ElementBlogOverviewTest extends SapphireTest
         $block = ElementBlogOverview::create();
         $this->assertEmpty($block->Title);
         $this->assertTrue((bool) $block->ShowPagination);
-        $this->assertFalse((bool) $block->ShowWidgets);
 
         // Update our config settings
         ElementBlogOverview::config()->set('set_default_title', true);
@@ -105,107 +100,4 @@ class ElementBlogOverviewTest extends SapphireTest
         $this->assertCount(4, $block->getBlogPosts());
     }
 
-    /**
-     * Test that the Block successfully returns the Widgets when it is assigned to a page which is using it's own
-     * SideBar and widgets
-     *
-     * @throws ValidationException
-     */
-    public function testSideBarView(): void
-    {
-        /** @var ElementBlogOverview $block */
-        $block = $this->objFromFixture(ElementBlogOverview::class, 'block2');
-        /** @var Blog|WidgetPageExtension $blog */
-        $blog = $this->objFromFixture(Blog::class, 'blog2');
-
-        /** @var WidgetArea $sideBar */
-        $sideBar = $blog->SideBarView();
-
-        $this->assertNotNull($sideBar);
-
-        /** @var DataList|Widget[] $widgets */
-        $widgets = $sideBar->Widgets();
-
-        $expectedWidgets = $widgets->map('ID', 'Title')->toArray();
-
-        $this->assertNotNull($block->SideBarView());
-
-        $this->assertEquals(
-            $expectedWidgets,
-            $block->SideBarView()->Widgets()->map('ID', 'Title')->toArray()
-        );
-    }
-
-    /**
-     * Test that the Block successfully returns the Widgets when it is assigned to a page which is inheriting its
-     * SideBar from its Parent page
-     *
-     * @throws ValidationException
-     */
-    public function testSideBarViewInheriting(): void
-    {
-        /** @var ElementBlogOverview $block */
-        $block = $this->objFromFixture(ElementBlogOverview::class, 'block1');
-        /** @var Blog|WidgetPageExtension $blog */
-        $blog = $this->objFromFixture(Blog::class, 'blog1');
-
-        /** @var WidgetArea $sideBar */
-        $sideBar = $blog->SideBarView();
-
-        $this->assertNotNull($sideBar);
-
-        /** @var DataList|Widget[] $widgets */
-        $widgets = $sideBar->Widgets();
-
-        $expectedWidgets = $widgets->map('ID', 'Title')->toArray();
-
-        $this->assertNotNull($block->SideBarView());
-
-        $this->assertEquals(
-            $expectedWidgets,
-            $block->SideBarView()->Widgets()->map('ID', 'Title')->toArray()
-        );
-    }
-
-    /**
-     * This Block has been added to a standard Page, but our config states that these Block types are not allowed
-     * outside of the Blog, so, we should simply get null
-     *
-     * @throws ValidationException
-     */
-    public function testSideBarDenied(): void
-    {
-        /** @var ElementBlogOverview $block */
-        $block = $this->objFromFixture(ElementBlogOverview::class, 'block3');
-
-        $this->assertNull($block->SideBarView());
-    }
-
-    /**
-     * This Block has been added to a (test only) Page, and our config is going to be set to allow that. We should
-     * expect that the custom SideBarView() method on the (test only) Page returns a WidgetArea
-     *
-     * @throws ValidationException
-     */
-    public function testSideBarCustom(): void
-    {
-        // Update our config to allow this Block type to be used outside of the Blog
-        ElementBlogOverview::config()->set('allow_use_outside_of_blog', true);
-
-        /** @var ElementBlogOverview $block */
-        $block = $this->objFromFixture(ElementBlogOverview::class, 'block4');
-
-        $this->assertNotNull($block->SideBarView());
-    }
-
-    /**
-     * @throws ValidationException
-     */
-    public function testSideBarNoParent(): void
-    {
-        /** @var ElementBlogOverview $block */
-        $block = $this->objFromFixture(ElementBlogOverview::class, 'block5');
-
-        $this->assertNull($block->SideBarView());
-    }
 }

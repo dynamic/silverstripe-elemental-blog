@@ -10,7 +10,6 @@ use PageController as BasePageController;
 use SilverStripe\Blog\Model\BlogController;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\ORM\ValidationException;
-use SilverStripe\Widgets\Extensions\WidgetPageExtension;
 
 /**
  * Class ElementBlogOverviewFunctionalTest
@@ -34,7 +33,6 @@ class ElementBlogOverviewFunctionalTest extends SapphireTest
      */
     protected static $required_extensions = [
         Page::class => [
-            WidgetPageExtension::class,
             ElementalPageExtension::class,
         ],
     ];
