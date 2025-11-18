@@ -99,5 +99,5 @@ class ElementBlogOverviewTest extends SapphireTest
         $this->assertNotNull($block->getBlogPosts());
         $this->assertCount(4, $block->getBlogPosts());
     }
-
 }
+

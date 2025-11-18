@@ -30,11 +30,18 @@
     },
     "require-dev": {
         "silverstripe/recipe-testing": "^4",
+        "silverstripe/widgets": "dev-feature/cms6-support as 4.0.x-dev",
         "squizlabs/php_codesniffer": "^3.0",
         "silverstripe/standards": "^1"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ishannz/silverstripe-widgets.git"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Dynamic\\Elements\\Blog\\": "src/",
