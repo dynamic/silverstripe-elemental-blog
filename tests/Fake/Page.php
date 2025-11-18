@@ -6,7 +6,6 @@ use Page as BasePage;
 use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\Dev\TestOnly;
 use SilverStripe\ORM\DataList;
-use SilverStripe\Widgets\Model\WidgetArea;
 
 /**
  * Test only class used to test that the Overview block can be used outside of a Blog page
@@ -17,14 +16,6 @@ use SilverStripe\Widgets\Model\WidgetArea;
  */
 class Page extends BasePage implements TestOnly
 {
-    /**
-     * @return WidgetArea
-     */
-    public function SideBarView(): WidgetArea
-    {
-        return WidgetArea::create();
-    }
-
     /**
      * @return DataList
      */
