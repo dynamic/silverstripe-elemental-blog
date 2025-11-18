@@ -1,5 +1,11 @@
+includes:
+  - phpstan-baseline.neon
+
 parameters:
   level: 1
   treatPhpDocTypesAsCertain: false
   paths:
     - src
+  excludePaths:
+    # Exclude tests directory - these use fake framework classes that PHPStan cannot resolve
+    - tests
