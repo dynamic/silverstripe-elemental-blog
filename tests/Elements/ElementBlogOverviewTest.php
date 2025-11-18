@@ -100,4 +100,3 @@ class ElementBlogOverviewTest extends SapphireTest
         $this->assertCount(4, $block->getBlogPosts());
     }
 }
-
