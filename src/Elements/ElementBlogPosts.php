@@ -34,6 +34,10 @@ class ElementBlogPosts extends BaseElement
 
     private static string $table_name = 'ElementBlogPosts';
 
+    private static string $singular_name = 'Blog Posts';
+
+    private static string $plural_name = 'Blog Posts Blocks';
+
     private static array $db = [
         'Limit' => 'Int',
         'Content' => 'HTMLText',
