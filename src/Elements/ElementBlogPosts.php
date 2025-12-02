@@ -34,6 +34,10 @@ class ElementBlogPosts extends BaseElement
 
     private static string $table_name = 'ElementBlogPosts';
 
+    private static string $singular_name = 'Blog Posts';
+
+    private static string $plural_name = 'Blog Posts Blocks';
+
     private static array $db = [
         'Limit' => 'Int',
         'Content' => 'HTMLText',
@@ -145,13 +149,5 @@ class ElementBlogPosts extends BaseElement
         $blockSchema = parent::provideBlockSchema();
         $blockSchema['content'] = $this->getSummary();
         return $blockSchema;
-    }
-
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return _t(__CLASS__ . '.BlockType', 'Blog Posts');
     }
 }
