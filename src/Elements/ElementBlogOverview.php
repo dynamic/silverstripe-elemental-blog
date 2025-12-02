@@ -37,9 +37,9 @@ class ElementBlogOverview extends BaseElement
 
     private static string $table_name = 'ElementBlogOverview';
 
-    private static string $singular_name = 'Element blog overview';
+    private static string $singular_name = 'Blog Overview';
 
-    private static string $plural_name = 'Element blog overview blocks';
+    private static string $plural_name = 'Blog Overview Blocks';
 
     private static string $description = 'Block displaying Blog Posts with pagination';
 
@@ -140,15 +140,6 @@ class ElementBlogOverview extends BaseElement
      * @var string|null
      */
     private $cacheKey;
-
-    /**
-     * @codeCoverageIgnore
-     * @return string
-     */
-    public function getType(): string
-    {
-        return static::config()->get('default_title');
-    }
 
     /**
      * @codeCoverageIgnore
