@@ -15,6 +15,7 @@
                 </a>
             </p>
         </div>
+    </div>
 <% else %>
     <p>No recent posts.</p>
 <% end_if %>
