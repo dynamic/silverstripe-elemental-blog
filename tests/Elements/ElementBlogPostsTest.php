@@ -6,7 +6,9 @@ use Dynamic\Elements\Blog\Elements\ElementBlogPosts;
 use SilverStripe\Blog\Model\BlogCategory;
 use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\Dev\SapphireTest;
+use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\TreeDropdownField;
 use SilverStripe\ORM\DataList;
 
 class ElementBlogPostsTest extends SapphireTest
@@ -51,7 +53,19 @@ class ElementBlogPostsTest extends SapphireTest
         $object = $this->objFromFixture(ElementBlogPosts::class, 'one');
         $fields = $object->getCMSFields();
         $this->assertInstanceOf(FieldList::class, $fields);
-        $this->assertNotNull($fields->dataFieldByName('BlogID'));
+
+        $blogField = $fields->dataFieldByName('BlogID');
+        $this->assertNotNull($blogField, 'BlogID field should be present');
+        $this->assertInstanceOf(
+            DropdownField::class,
+            $blogField,
+            'Featured Blog should be a plain DropdownField, not a tree or searchable picker'
+        );
+        $this->assertNotInstanceOf(
+            TreeDropdownField::class,
+            $blogField,
+            'Featured Blog must not render as a TreeDropdownField (full-site page picker)'
+        );
     }
 
     /**

@@ -71,12 +71,14 @@ class ElementBlogPosts extends BaseElement
                 ->setTitle(_t(__CLASS__ . 'LimitLabel', 'Posts to show'));
 
             if (class_exists(Blog::class)) {
-                $fields->insertBefore(
-                    'Limit',
-                    $fields->dataFieldByName('BlogID')
-                        ->setTitle(_t(__CLASS__ . 'BlogLabel', 'Featured Blog'))
-                        ->setEmptyString('')
-                );
+                $blogField = DropdownField::create(
+                    'BlogID',
+                    _t(__CLASS__ . 'BlogLabel', 'Featured Blog'),
+                    Blog::get()->map('ID', 'Title')
+                )->setEmptyString('');
+
+                $fields->replaceField('BlogID', $blogField);
+                $fields->insertBefore('Limit', $blogField);
 
                 $dataSource = function ($val) {
                     if ($val) {
@@ -95,7 +97,7 @@ class ElementBlogPosts extends BaseElement
                         __CLASS__ . 'CategoryLabel',
                         'Category'
                     ), $dataSource)
-                        ->setDepends($fields->dataFieldByName('BlogID'))
+                        ->setDepends($blogField)
                         ->setHasEmptyDefault(true)
                         ->setEmptyString('')
                 );
