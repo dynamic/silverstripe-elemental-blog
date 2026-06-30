@@ -77,7 +77,6 @@ class ElementBlogPosts extends BaseElement
                     Blog::get()->map('ID', 'Title')
                 )->setEmptyString('');
 
-                $fields->replaceField('BlogID', $blogField);
                 $fields->insertBefore('Limit', $blogField);
 
                 $dataSource = function ($val) {
