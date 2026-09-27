@@ -106,7 +106,7 @@ class ElementBlogPostsTest extends SapphireTest
     private function compareList(DataList $expected, DataList $actual, $message = ''): void
     {
         $expectedArray = $expected->map('ID', 'ClassName')->toArray();
-        $actualArray = $expected->map('ID', 'ClassName')->toArray();
+        $actualArray = $actual->map('ID', 'ClassName')->toArray();
         $this->assertEquals($expectedArray, $actualArray, $message);
     }
 }
