@@ -353,7 +353,7 @@ class ElementBlogOverview extends BaseElement
     protected function getPageLengthFieldDescription(): string
     {
         return _t(
-            static::class . '.PAGE_LENGTH_DESCRIPTION',
+            __CLASS__ . '.PAGE_LENGTH_DESCRIPTION',
             'Set to 0 (or leave blank) to use the Blog page\'s own "posts per page" setting'
         );
     }

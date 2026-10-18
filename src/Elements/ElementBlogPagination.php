@@ -70,7 +70,7 @@ class ElementBlogPagination extends ElementBlogOverview
     protected function getPageLengthFieldDescription(): string
     {
         return _t(
-            static::class . '.PAGE_LENGTH_DESCRIPTION',
+            __CLASS__ . '.PAGE_LENGTH_DESCRIPTION',
             'Must match the "posts per page" value of the Blog Overview block it paginates, otherwise the page links '
                 . 'will be wrong. Set to 0 (or leave blank) to use the Blog page\'s own setting on both blocks'
         );
