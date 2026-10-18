@@ -11,6 +11,7 @@ use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use SilverStripe\Forms\LiteralField;
+use SilverStripe\Forms\NumericField;
 use SilverStripe\Model\List\PaginatedList;
 use SilverStripe\ORM\DataList;
 use SilverStripe\Core\Validation\ValidationException;
@@ -21,12 +22,23 @@ use SilverStripe\Core\Validation\ValidationException;
  * @package Dynamic\Elements\Blog\Elements
  * @property string $Content
  * @property int $ShowPagination
+ * @property int $PageLength Number of posts to display per page, or 0 to inherit the Blog page's own setting
  */
 class ElementBlogOverview extends BaseElement
 {
     private static array $db = [
         'Content' => 'HTMLText',
         'ShowPagination' => 'Boolean(0)',
+        'PageLength' => 'Int',
+    ];
+
+    /**
+     * A PageLength of zero (the default) means "inherit whatever page length the provided PaginatedList already has",
+     * which for a Blog page is its own `PostsPerPage` setting. This deliberately defaults to zero rather than to a hard
+     * coded number, so that running dev/build on an existing site does not change the output of any existing Block
+     */
+    private static array $defaults = [
+        'PageLength' => 0,
     ];
 
     private static string $icon = 'font-icon-p-articles';
@@ -81,6 +93,13 @@ class ElementBlogOverview extends BaseElement
     private static bool $show_pagination_field = true;
 
     /**
+     * You can set this to false if you would prefer that we do not display the "Posts per page" field to users, EG: if
+     * you would always like the page length to be inherited from the Blog page (or from your own `updatePaginatedList`
+     * extension)
+     */
+    private static bool $show_page_length_field = true;
+
+    /**
      * Default value for ShowPagination. If set, this block will also output the pagination for your Blog. You can
      * update this value via config
      */
@@ -131,6 +150,7 @@ class ElementBlogOverview extends BaseElement
         $fields->removeByName([
             'Content',
             'ShowPagination',
+            'PageLength',
         ]);
 
         // Check whether we want to display the default Title field
@@ -161,6 +181,28 @@ class ElementBlogOverview extends BaseElement
             $fields->addFieldToTab(
                 'Root.Main',
                 $showPaginationField
+            );
+        }
+
+        // Check whether we want to allow the author to override the number of posts displayed per page
+        if (static::config()->get('show_page_length_field')) {
+            $pageLengthField = NumericField::create(
+                'PageLength',
+                _t(__CLASS__ . '.PAGE_LENGTH', 'Posts per page')
+            )
+                ->setDescription(
+                    _t(
+                        __CLASS__ . '.PAGE_LENGTH_DESCRIPTION',
+                        'Set to 0 (or leave blank) to use the Blog page\'s own "posts per page" setting'
+                    )
+                );
+
+            // An opportunity for you to update this field before it is added (EG: you might want to add a description)
+            $this->invokeWithExtensions('updatePageLengthField', $pageLengthField);
+
+            $fields->addFieldToTab(
+                'Root.Main',
+                $pageLengthField
             );
         }
 
@@ -312,6 +354,13 @@ class ElementBlogOverview extends BaseElement
      */
     protected function setPaginatedList(?PaginatedList $paginatedList): void
     {
+        // This Block can override the page length of the List it was given (EG: the Blog page's `PostsPerPage`). Zero,
+        // blank or negative means "inherit", so we leave the List alone in that case. This is applied *before* the
+        // extension point below, so that your own `updatePaginatedList` extension still has the final word
+        if ($paginatedList !== null && (int) $this->PageLength > 0) {
+            $paginatedList->setPageLength((int) $this->PageLength);
+        }
+
         // Provided is an opportunity for you to update this PaginatedList
         $this->invokeWithExtensions('updatePaginatedList', $paginatedList);
 

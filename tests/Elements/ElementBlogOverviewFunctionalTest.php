@@ -9,6 +9,9 @@ use Page;
 use PageController as BasePageController;
 use SilverStripe\Blog\Model\BlogController;
 use SilverStripe\Dev\SapphireTest;
+use SilverStripe\Forms\NumericField;
+use SilverStripe\Model\List\ArrayList;
+use SilverStripe\Model\List\PaginatedList;
 use SilverStripe\ORM\ValidationException;
 
 /**
@@ -95,5 +98,88 @@ class ElementBlogOverviewFunctionalTest extends SapphireTest
 
         // We have not allowed usage outside of BlogController, so this should be null
         $this->assertNotNull($block->getPaginatedList($controller));
+    }
+
+    /**
+     * A Block with a PageLength set overrides the page length of the PaginatedList it was given
+     *
+     * @throws ValidationException
+     */
+    public function testPageLengthOverridesInheritedValue(): void
+    {
+        ElementBlogOverview::config()->set('allow_use_outside_of_blog', true);
+
+        /** @var ElementBlogOverview $block */
+        $block = $this->objFromFixture(ElementBlogOverview::class, 'block2');
+        $block->PageLength = 2;
+
+        $paginatedList = $block->getPaginatedList(new PageController());
+
+        $this->assertNotNull($paginatedList);
+        $this->assertSame(2, $paginatedList->getPageLength());
+    }
+
+    /**
+     * An unset (zero) PageLength must not change the page length of the provided PaginatedList, so that existing sites
+     * keep using the Blog page's own "posts per page" setting
+     *
+     * @throws ValidationException
+     */
+    public function testPageLengthOfZeroInheritsProvidedListValue(): void
+    {
+        ElementBlogOverview::config()->set('allow_use_outside_of_blog', true);
+
+        /** @var ElementBlogOverview $block */
+        $block = $this->objFromFixture(ElementBlogOverview::class, 'block2');
+        $block->PageLength = 0;
+
+        $paginatedList = $block->getPaginatedList(new PageController());
+
+        $this->assertNotNull($paginatedList);
+        $this->assertSame($this->getDefaultPageLength(), $paginatedList->getPageLength());
+    }
+
+    /**
+     * A nonsensical (negative) PageLength is treated the same way as zero, rather than being pushed onto the List
+     *
+     * @throws ValidationException
+     */
+    public function testNegativePageLengthInheritsProvidedListValue(): void
+    {
+        ElementBlogOverview::config()->set('allow_use_outside_of_blog', true);
+
+        /** @var ElementBlogOverview $block */
+        $block = $this->objFromFixture(ElementBlogOverview::class, 'block2');
+        $block->PageLength = -5;
+
+        $paginatedList = $block->getPaginatedList(new PageController());
+
+        $this->assertNotNull($paginatedList);
+        $this->assertSame($this->getDefaultPageLength(), $paginatedList->getPageLength());
+    }
+
+    /**
+     * The PageLength field is scaffolded into the CMS for the Block, and can be hidden via config
+     */
+    public function testPageLengthFieldIsDisplayedInTheCMS(): void
+    {
+        $block = ElementBlogOverview::create();
+
+        $field = $block->getCMSFields()->dataFieldByName('PageLength');
+
+        $this->assertInstanceOf(NumericField::class, $field);
+
+        // ... and it can be turned off via config, like the other fields on this Block
+        ElementBlogOverview::config()->set('show_page_length_field', false);
+
+        $this->assertNull($block->getCMSFields()->dataFieldByName('PageLength'));
+    }
+
+    /**
+     * The page length a freshly created PaginatedList has, which is what the Block must fall back to
+     */
+    private function getDefaultPageLength(): int
+    {
+        return PaginatedList::create(ArrayList::create())->getPageLength();
     }
 }
