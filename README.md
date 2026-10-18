@@ -115,6 +115,11 @@ that block works out its page links from its *own* posts-per-page value, so it h
 Overview block it paginates. A mismatch gives a page count that does not match the posts on screen, and page links that
 jump past posts the Overview block never displayed.
 
+**Please consider:** the Blog module's own `rel="next"` / `rel="prev"` meta tag helpers
+(`BlogController::PaginationAbsoluteNextLink()` and `PaginationAbsolutePrevLink()`) build their list from the Blog page's
+"posts per page" setting, so they do not know about a block level override. The Blog module's shipped templates do not
+use them; if your theme does, those links will describe the page length of the Blog page rather than of this block.
+
 #### Using this block on Page types other than `Blog`
 
 **Please consider:** While the Overview block does support you using it on other page types, it is primarily designed to
