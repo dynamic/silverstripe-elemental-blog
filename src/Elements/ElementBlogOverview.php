@@ -190,12 +190,7 @@ class ElementBlogOverview extends BaseElement
                 'PageLength',
                 _t(__CLASS__ . '.PAGE_LENGTH', 'Posts per page')
             )
-                ->setDescription(
-                    _t(
-                        __CLASS__ . '.PAGE_LENGTH_DESCRIPTION',
-                        'Set to 0 (or leave blank) to use the Blog page\'s own "posts per page" setting'
-                    )
-                );
+                ->setDescription($this->getPageLengthFieldDescription());
 
             // An opportunity for you to update this field before it is added (EG: you might want to add a description)
             $this->invokeWithExtensions('updatePageLengthField', $pageLengthField);
@@ -347,6 +342,20 @@ class ElementBlogOverview extends BaseElement
         $this->setBlogPosts($blogPosts);
 
         return $this->blogPosts;
+    }
+
+    /**
+     * The help text shown under the "Posts per page" field in the CMS. It is provided as a method (rather than a fixed
+     * string) because subclasses may need to say something different about this field: EG
+     * {@see ElementBlogPagination::getPageLengthFieldDescription()} has to warn that a pagination block only produces
+     * correct page links when its value matches the Overview block it is paginating
+     */
+    protected function getPageLengthFieldDescription(): string
+    {
+        return _t(
+            static::class . '.PAGE_LENGTH_DESCRIPTION',
+            'Set to 0 (or leave blank) to use the Blog page\'s own "posts per page" setting'
+        );
     }
 
     /**

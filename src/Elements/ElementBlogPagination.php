@@ -59,6 +59,24 @@ class ElementBlogPagination extends ElementBlogOverview
     private static bool $show_widgets_field = false;
 
     /**
+     * This Block builds its own PaginatedList from the Blog page, exactly like the Overview Block does, so its
+     * `PageLength` decides how many pages the links it renders point at. If an Overview Block on the same page
+     * overrides its own `PageLength` and this Block does not match it, the page count is calculated against a
+     * different number of posts per page: the links point at offsets that the Overview Block never displays. There is
+     * no way for us to know which value this Block should mirror (there may be more than one Overview Block on the
+     * page), so we keep the field visible - matching it by hand is the only way to get both Blocks to agree - and we
+     * say so next to it
+     */
+    protected function getPageLengthFieldDescription(): string
+    {
+        return _t(
+            static::class . '.PAGE_LENGTH_DESCRIPTION',
+            'Must match the "posts per page" value of the Blog Overview block it paginates, otherwise the page links '
+                . 'will be wrong. Set to 0 (or leave blank) to use the Blog page\'s own setting on both blocks'
+        );
+    }
+
+    /**
      * This Block is not intended to display widgets, so, set this to 0 by default
      */
     private static int $widgets_field_default = 0;

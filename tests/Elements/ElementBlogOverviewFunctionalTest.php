@@ -4,6 +4,7 @@ namespace Dynamic\Elements\Blog\Tests\Elements;
 
 use DNADesign\Elemental\Extensions\ElementalPageExtension;
 use Dynamic\Elements\Blog\Elements\ElementBlogOverview;
+use Dynamic\Elements\Blog\Elements\ElementBlogPagination;
 use Dynamic\Elements\Blog\Tests\Fake\PageController;
 use Page;
 use PageController as BasePageController;
@@ -173,6 +174,25 @@ class ElementBlogOverviewFunctionalTest extends SapphireTest
         ElementBlogOverview::config()->set('show_page_length_field', false);
 
         $this->assertNull($block->getCMSFields()->dataFieldByName('PageLength'));
+    }
+
+    /**
+     * ElementBlogPagination inherits this field, and its page links are only correct when its value matches the
+     * Overview block it paginates, so it has to say something different next to the field
+     */
+    public function testPaginationBlockWarnsThatPageLengthMustMatch(): void
+    {
+        $block = ElementBlogPagination::create();
+
+        $field = $block->getCMSFields()->dataFieldByName('PageLength');
+
+        $this->assertInstanceOf(NumericField::class, $field);
+        $this->assertStringContainsString('Must match', (string) $field->getDescription());
+
+        // The Overview block, which does not have that problem, says something else
+        $overviewField = ElementBlogOverview::create()->getCMSFields()->dataFieldByName('PageLength');
+
+        $this->assertStringNotContainsString('Must match', (string) $overviewField->getDescription());
     }
 
     /**
